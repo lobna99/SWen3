@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * WarehouseNextHops
  */
 
-@JsonTypeName("warehouse_allOf_nextHops")
+@JsonTypeName("warehouse_nextHops")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class WarehouseNextHops {
 
