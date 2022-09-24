@@ -17,7 +17,7 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * WarehouseAllOfNextHops
+ * WarehouseNextHops
  */
 
 @JsonTypeName("warehouse_allOf_nextHops")
@@ -30,7 +30,7 @@ public class WarehouseNextHops {
   @JsonProperty("hop")
   private Hop hop;
 
-  public WarehouseAllOfNextHops traveltimeMins(Integer traveltimeMins) {
+  public WarehouseNextHops traveltimeMins(Integer traveltimeMins) {
     this.traveltimeMins = traveltimeMins;
     return this;
   }
@@ -49,7 +49,7 @@ public class WarehouseNextHops {
     this.traveltimeMins = traveltimeMins;
   }
 
-  public WarehouseAllOfNextHops hop(Hop hop) {
+  public WarehouseNextHops hop(Hop hop) {
     this.hop = hop;
     return this;
   }
@@ -76,9 +76,9 @@ public class WarehouseNextHops {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WarehouseAllOfNextHops warehouseAllOfNextHops = (WarehouseAllOfNextHops) o;
-    return Objects.equals(this.traveltimeMins, warehouseAllOfNextHops.traveltimeMins) &&
-        Objects.equals(this.hop, warehouseAllOfNextHops.hop);
+    WarehouseNextHops warehouseNextHops = (WarehouseNextHops) o;
+    return Objects.equals(this.traveltimeMins, warehouseNextHops.traveltimeMins) &&
+        Objects.equals(this.hop, warehouseNextHops.hop);
   }
 
   @Override
