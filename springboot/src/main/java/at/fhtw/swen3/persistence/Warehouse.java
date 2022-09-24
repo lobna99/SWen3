@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import at.fhtw.swen3.persistence.GeoCoordinate;
 import at.fhtw.swen3.persistence.Hop;
-import at.fhtw.swen3.persistence.WarehouseAllOfNextHops;
+import at.fhtw.swen3.persistence.WarehouseNextHops;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -37,7 +37,7 @@ public class Warehouse extends Hop {
 
   @JsonProperty("nextHops")
   @Valid
-  private List<WarehouseAllOfNextHops> nextHops = new ArrayList<>();
+  private List<WarehouseNextHops> nextHops = new ArrayList<>();
 
   public Warehouse level(Integer level) {
     this.level = level;
@@ -58,12 +58,12 @@ public class Warehouse extends Hop {
     this.level = level;
   }
 
-  public Warehouse nextHops(List<WarehouseAllOfNextHops> nextHops) {
+  public Warehouse nextHops(List<WarehouseNextHops> nextHops) {
     this.nextHops = nextHops;
     return this;
   }
 
-  public Warehouse addNextHopsItem(WarehouseAllOfNextHops nextHopsItem) {
+  public Warehouse addNextHopsItem(WarehouseNextHops nextHopsItem) {
     this.nextHops.add(nextHopsItem);
     return this;
   }
@@ -74,11 +74,11 @@ public class Warehouse extends Hop {
   */
   @NotNull @Valid 
   @Schema(name = "nextHops", description = "Next hops after this warehouse (warehouses or trucks).", required = true)
-  public List<WarehouseAllOfNextHops> getNextHops() {
+  public List<WarehouseNextHops> getNextHops() {
     return nextHops;
   }
 
-  public void setNextHops(List<WarehouseAllOfNextHops> nextHops) {
+  public void setNextHops(List<WarehouseNextHops> nextHops) {
     this.nextHops = nextHops;
   }
 
