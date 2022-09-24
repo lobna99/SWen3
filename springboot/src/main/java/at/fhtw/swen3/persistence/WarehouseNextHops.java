@@ -22,7 +22,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("warehouse_allOf_nextHops")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
-public class WarehouseAllOfNextHops {
+public class WarehouseNextHops {
 
   @JsonProperty("traveltimeMins")
   private Integer traveltimeMins;
@@ -89,7 +89,7 @@ public class WarehouseAllOfNextHops {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WarehouseAllOfNextHops {\n");
+    sb.append("class WarehouseNextHops {\n");
     sb.append("    traveltimeMins: ").append(toIndentedString(traveltimeMins)).append("\n");
     sb.append("    hop: ").append(toIndentedString(hop)).append("\n");
     sb.append("}");
