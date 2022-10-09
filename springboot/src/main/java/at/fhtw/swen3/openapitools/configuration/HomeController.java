@@ -1,4 +1,4 @@
-package org.openapitools.configuration;
+package  at.fhtw.swen3.openapitools.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;

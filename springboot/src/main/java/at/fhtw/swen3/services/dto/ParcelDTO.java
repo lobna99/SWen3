@@ -1,19 +1,15 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
-import at.fhtw.swen3.persistence.Recipient;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -22,18 +18,18 @@ import javax.annotation.Generated;
 
 @JsonTypeName("parcel")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
-public class Parcel {
+public class ParcelDTO {
 
   @JsonProperty("weight")
   private Float weight;
 
   @JsonProperty("recipient")
-  private Recipient recipient;
+  private RecipientDto recipientDto;
 
   @JsonProperty("sender")
-  private Recipient sender;
+  private RecipientDto sender;
 
-  public Parcel weight(Float weight) {
+  public ParcelDTO weight(Float weight) {
     this.weight = weight;
     return this;
   }
@@ -52,8 +48,8 @@ public class Parcel {
     this.weight = weight;
   }
 
-  public Parcel recipient(Recipient recipient) {
-    this.recipient = recipient;
+  public ParcelDTO recipient(RecipientDto recipientDto) {
+    this.recipientDto = recipientDto;
     return this;
   }
 
@@ -63,15 +59,15 @@ public class Parcel {
   */
   @NotNull @Valid 
   @Schema(name = "recipient", required = true)
-  public Recipient getRecipient() {
-    return recipient;
+  public RecipientDto getRecipient() {
+    return recipientDto;
   }
 
-  public void setRecipient(Recipient recipient) {
-    this.recipient = recipient;
+  public void setRecipient(RecipientDto recipientDto) {
+    this.recipientDto = recipientDto;
   }
 
-  public Parcel sender(Recipient sender) {
+  public ParcelDTO sender(RecipientDto sender) {
     this.sender = sender;
     return this;
   }
@@ -82,11 +78,11 @@ public class Parcel {
   */
   @NotNull @Valid 
   @Schema(name = "sender", required = true)
-  public Recipient getSender() {
+  public RecipientDto getSender() {
     return sender;
   }
 
-  public void setSender(Recipient sender) {
+  public void setSender(RecipientDto sender) {
     this.sender = sender;
   }
 
@@ -98,15 +94,15 @@ public class Parcel {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Parcel parcel = (Parcel) o;
-    return Objects.equals(this.weight, parcel.weight) &&
-        Objects.equals(this.recipient, parcel.recipient) &&
-        Objects.equals(this.sender, parcel.sender);
+    ParcelDTO parcelDTO = (ParcelDTO) o;
+    return Objects.equals(this.weight, parcelDTO.weight) &&
+        Objects.equals(this.recipientDto, parcelDTO.recipientDto) &&
+        Objects.equals(this.sender, parcelDTO.sender);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(weight, recipient, sender);
+    return Objects.hash(weight, recipientDto, sender);
   }
 
   @Override
@@ -114,7 +110,7 @@ public class Parcel {
     StringBuilder sb = new StringBuilder();
     sb.append("class Parcel {\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
-    sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    recipient: ").append(toIndentedString(recipientDto)).append("\n");
     sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -1,4 +1,4 @@
-package org.openapitools;
+package at.fhtw.swen3.openapitools;
 
 import com.fasterxml.jackson.databind.Module;
 import org.openapitools.jackson.nullable.JsonNullableModule;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"org.openapitools", "at.fhtw.swen3.services" , "org.openapitools.configuration"})
+@ComponentScan(basePackages = {"org.openapitools", "at.fhtw.swen3.services" , "at.fhtw.swen3.openapitools.configuration"})
 public class OpenApiGeneratorApplication {
 
     public static void main(String[] args) {

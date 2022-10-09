@@ -1,23 +1,14 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
-import at.fhtw.swen3.persistence.GeoCoordinate;
-import at.fhtw.swen3.persistence.Hop;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
+
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -27,7 +18,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("transferwarehouse")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
-public class Transferwarehouse extends Hop {
+public class TransferwarehouseDto extends Hop {
 
   @JsonProperty("regionGeoJson")
   private String regionGeoJson;
@@ -38,7 +29,7 @@ public class Transferwarehouse extends Hop {
   @JsonProperty("logisticsPartnerUrl")
   private String logisticsPartnerUrl;
 
-  public Transferwarehouse regionGeoJson(String regionGeoJson) {
+  public TransferwarehouseDto regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
     return this;
   }
@@ -57,7 +48,7 @@ public class Transferwarehouse extends Hop {
     this.regionGeoJson = regionGeoJson;
   }
 
-  public Transferwarehouse logisticsPartner(String logisticsPartner) {
+  public TransferwarehouseDto logisticsPartner(String logisticsPartner) {
     this.logisticsPartner = logisticsPartner;
     return this;
   }
@@ -76,7 +67,7 @@ public class Transferwarehouse extends Hop {
     this.logisticsPartner = logisticsPartner;
   }
 
-  public Transferwarehouse logisticsPartnerUrl(String logisticsPartnerUrl) {
+  public TransferwarehouseDto logisticsPartnerUrl(String logisticsPartnerUrl) {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
     return this;
   }
@@ -95,32 +86,32 @@ public class Transferwarehouse extends Hop {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
   }
 
-  public Transferwarehouse hopType(String hopType) {
+  public TransferwarehouseDto hopType(String hopType) {
     super.setHopType(hopType);
     return this;
   }
 
-  public Transferwarehouse code(String code) {
+  public TransferwarehouseDto code(String code) {
     super.setCode(code);
     return this;
   }
 
-  public Transferwarehouse description(String description) {
+  public TransferwarehouseDto description(String description) {
     super.setDescription(description);
     return this;
   }
 
-  public Transferwarehouse processingDelayMins(Integer processingDelayMins) {
+  public TransferwarehouseDto processingDelayMins(Integer processingDelayMins) {
     super.setProcessingDelayMins(processingDelayMins);
     return this;
   }
 
-  public Transferwarehouse locationName(String locationName) {
+  public TransferwarehouseDto locationName(String locationName) {
     super.setLocationName(locationName);
     return this;
   }
 
-  public Transferwarehouse locationCoordinates(GeoCoordinate locationCoordinates) {
+  public TransferwarehouseDto locationCoordinates(GeoCoordinate locationCoordinates) {
     super.setLocationCoordinates(locationCoordinates);
     return this;
   }
@@ -133,10 +124,10 @@ public class Transferwarehouse extends Hop {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Transferwarehouse transferwarehouse = (Transferwarehouse) o;
-    return Objects.equals(this.regionGeoJson, transferwarehouse.regionGeoJson) &&
-        Objects.equals(this.logisticsPartner, transferwarehouse.logisticsPartner) &&
-        Objects.equals(this.logisticsPartnerUrl, transferwarehouse.logisticsPartnerUrl) &&
+    TransferwarehouseDto transferwarehouseDto = (TransferwarehouseDto) o;
+    return Objects.equals(this.regionGeoJson, transferwarehouseDto.regionGeoJson) &&
+        Objects.equals(this.logisticsPartner, transferwarehouseDto.logisticsPartner) &&
+        Objects.equals(this.logisticsPartnerUrl, transferwarehouseDto.logisticsPartnerUrl) &&
         super.equals(o);
   }
 

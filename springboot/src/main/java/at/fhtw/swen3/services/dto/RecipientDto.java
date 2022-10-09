@@ -1,18 +1,13 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
+
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -21,7 +16,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("recipient")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
-public class Recipient {
+public class RecipientDto {
 
   @JsonProperty("name")
   private String name;
@@ -38,7 +33,7 @@ public class Recipient {
   @JsonProperty("country")
   private String country;
 
-  public Recipient name(String name) {
+  public RecipientDto name(String name) {
     this.name = name;
     return this;
   }
@@ -57,7 +52,7 @@ public class Recipient {
     this.name = name;
   }
 
-  public Recipient street(String street) {
+  public RecipientDto street(String street) {
     this.street = street;
     return this;
   }
@@ -76,7 +71,7 @@ public class Recipient {
     this.street = street;
   }
 
-  public Recipient postalCode(String postalCode) {
+  public RecipientDto postalCode(String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
@@ -95,7 +90,7 @@ public class Recipient {
     this.postalCode = postalCode;
   }
 
-  public Recipient city(String city) {
+  public RecipientDto city(String city) {
     this.city = city;
     return this;
   }
@@ -114,7 +109,7 @@ public class Recipient {
     this.city = city;
   }
 
-  public Recipient country(String country) {
+  public RecipientDto country(String country) {
     this.country = country;
     return this;
   }
@@ -141,12 +136,12 @@ public class Recipient {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Recipient recipient = (Recipient) o;
-    return Objects.equals(this.name, recipient.name) &&
-        Objects.equals(this.street, recipient.street) &&
-        Objects.equals(this.postalCode, recipient.postalCode) &&
-        Objects.equals(this.city, recipient.city) &&
-        Objects.equals(this.country, recipient.country);
+    RecipientDto recipientDto = (RecipientDto) o;
+    return Objects.equals(this.name, recipientDto.name) &&
+        Objects.equals(this.street, recipientDto.street) &&
+        Objects.equals(this.postalCode, recipientDto.postalCode) &&
+        Objects.equals(this.city, recipientDto.city) &&
+        Objects.equals(this.country, recipientDto.country);
   }
 
   @Override

@@ -5,17 +5,15 @@
  */
 package at.fhtw.swen3.services;
 
-import at.fhtw.swen3.persistence.Error;
-import at.fhtw.swen3.persistence.NewParcelInfo;
-import at.fhtw.swen3.persistence.Parcel;
-import at.fhtw.swen3.persistence.TrackingInformation;
+import at.fhtw.swen3.services.dto.Error;
+import at.fhtw.swen3.services.dto.NewParcelInfo;
+import at.fhtw.swen3.services.dto.ParcelDTO;
+import at.fhtw.swen3.services.dto.TrackingInformation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,12 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -113,7 +108,7 @@ public interface ParcelApi {
     /**
      * POST /parcel : Submit a new parcel to the logistics service. 
      *
-     * @param parcel  (required)
+     * @param parcelDTO  (required)
      * @return Successfully submitted the new parcel (status code 201)
      *         or The operation failed due to an error. (status code 400)
      *         or The address of sender or receiver was not found. (status code 404)
@@ -141,7 +136,7 @@ public interface ParcelApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<NewParcelInfo> submitParcel(
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
+        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody ParcelDTO parcelDTO
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -205,7 +200,7 @@ public interface ParcelApi {
      * POST /parcel/{trackingId} : Transfer an existing parcel into the system from the service of a logistics partner. 
      *
      * @param trackingId The tracking ID of the parcel. E.g. PYJRB4HZ6  (required)
-     * @param parcel  (required)
+     * @param parcelDTO  (required)
      * @return Successfully transitioned the parcel (status code 200)
      *         or The operation failed due to an error. (status code 400)
      *         or A parcel with the specified trackingID is already in the system. (status code 409)
@@ -232,7 +227,7 @@ public interface ParcelApi {
     )
     default ResponseEntity<NewParcelInfo> transitionParcel(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId,
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
+        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody ParcelDTO parcelDTO
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
