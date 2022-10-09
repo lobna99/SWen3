@@ -1,23 +1,14 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
-import at.fhtw.swen3.persistence.GeoCoordinate;
-import at.fhtw.swen3.persistence.Hop;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
+
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -27,7 +18,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("truck")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
-public class Truck extends Hop {
+public class TruckDto extends Hop {
 
   @JsonProperty("regionGeoJson")
   private String regionGeoJson;
@@ -35,7 +26,7 @@ public class Truck extends Hop {
   @JsonProperty("numberPlate")
   private String numberPlate;
 
-  public Truck regionGeoJson(String regionGeoJson) {
+  public TruckDto regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
     return this;
   }
@@ -54,7 +45,7 @@ public class Truck extends Hop {
     this.regionGeoJson = regionGeoJson;
   }
 
-  public Truck numberPlate(String numberPlate) {
+  public TruckDto numberPlate(String numberPlate) {
     this.numberPlate = numberPlate;
     return this;
   }
@@ -73,32 +64,32 @@ public class Truck extends Hop {
     this.numberPlate = numberPlate;
   }
 
-  public Truck hopType(String hopType) {
+  public TruckDto hopType(String hopType) {
     super.setHopType(hopType);
     return this;
   }
 
-  public Truck code(String code) {
+  public TruckDto code(String code) {
     super.setCode(code);
     return this;
   }
 
-  public Truck description(String description) {
+  public TruckDto description(String description) {
     super.setDescription(description);
     return this;
   }
 
-  public Truck processingDelayMins(Integer processingDelayMins) {
+  public TruckDto processingDelayMins(Integer processingDelayMins) {
     super.setProcessingDelayMins(processingDelayMins);
     return this;
   }
 
-  public Truck locationName(String locationName) {
+  public TruckDto locationName(String locationName) {
     super.setLocationName(locationName);
     return this;
   }
 
-  public Truck locationCoordinates(GeoCoordinate locationCoordinates) {
+  public TruckDto locationCoordinates(GeoCoordinate locationCoordinates) {
     super.setLocationCoordinates(locationCoordinates);
     return this;
   }
@@ -111,9 +102,9 @@ public class Truck extends Hop {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Truck truck = (Truck) o;
-    return Objects.equals(this.regionGeoJson, truck.regionGeoJson) &&
-        Objects.equals(this.numberPlate, truck.numberPlate) &&
+    TruckDto truckDto = (TruckDto) o;
+    return Objects.equals(this.regionGeoJson, truckDto.regionGeoJson) &&
+        Objects.equals(this.numberPlate, truckDto.numberPlate) &&
         super.equals(o);
   }
 

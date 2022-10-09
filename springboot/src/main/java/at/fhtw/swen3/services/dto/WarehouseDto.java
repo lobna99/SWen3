@@ -1,26 +1,16 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
-import at.fhtw.swen3.persistence.GeoCoordinate;
-import at.fhtw.swen3.persistence.Hop;
-import at.fhtw.swen3.persistence.WarehouseNextHops;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -30,7 +20,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("warehouse")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
-public class Warehouse extends Hop {
+public class WarehouseDto extends Hop {
 
   @JsonProperty("level")
   private Integer level;
@@ -39,7 +29,7 @@ public class Warehouse extends Hop {
   @Valid
   private List<WarehouseNextHops> nextHops = new ArrayList<>();
 
-  public Warehouse level(Integer level) {
+  public WarehouseDto level(Integer level) {
     this.level = level;
     return this;
   }
@@ -58,12 +48,12 @@ public class Warehouse extends Hop {
     this.level = level;
   }
 
-  public Warehouse nextHops(List<WarehouseNextHops> nextHops) {
+  public WarehouseDto nextHops(List<WarehouseNextHops> nextHops) {
     this.nextHops = nextHops;
     return this;
   }
 
-  public Warehouse addNextHopsItem(WarehouseNextHops nextHopsItem) {
+  public WarehouseDto addNextHopsItem(WarehouseNextHops nextHopsItem) {
     this.nextHops.add(nextHopsItem);
     return this;
   }
@@ -82,32 +72,32 @@ public class Warehouse extends Hop {
     this.nextHops = nextHops;
   }
 
-  public Warehouse hopType(String hopType) {
+  public WarehouseDto hopType(String hopType) {
     super.setHopType(hopType);
     return this;
   }
 
-  public Warehouse code(String code) {
+  public WarehouseDto code(String code) {
     super.setCode(code);
     return this;
   }
 
-  public Warehouse description(String description) {
+  public WarehouseDto description(String description) {
     super.setDescription(description);
     return this;
   }
 
-  public Warehouse processingDelayMins(Integer processingDelayMins) {
+  public WarehouseDto processingDelayMins(Integer processingDelayMins) {
     super.setProcessingDelayMins(processingDelayMins);
     return this;
   }
 
-  public Warehouse locationName(String locationName) {
+  public WarehouseDto locationName(String locationName) {
     super.setLocationName(locationName);
     return this;
   }
 
-  public Warehouse locationCoordinates(GeoCoordinate locationCoordinates) {
+  public WarehouseDto locationCoordinates(GeoCoordinate locationCoordinates) {
     super.setLocationCoordinates(locationCoordinates);
     return this;
   }
@@ -120,9 +110,9 @@ public class Warehouse extends Hop {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Warehouse warehouse = (Warehouse) o;
-    return Objects.equals(this.level, warehouse.level) &&
-        Objects.equals(this.nextHops, warehouse.nextHops) &&
+    WarehouseDto warehouseDto = (WarehouseDto) o;
+    return Objects.equals(this.level, warehouseDto.level) &&
+        Objects.equals(this.nextHops, warehouseDto.nextHops) &&
         super.equals(o);
   }
 

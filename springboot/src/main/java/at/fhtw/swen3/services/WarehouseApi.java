@@ -5,16 +5,14 @@
  */
 package at.fhtw.swen3.services;
 
-import at.fhtw.swen3.persistence.Error;
-import at.fhtw.swen3.persistence.Hop;
-import at.fhtw.swen3.persistence.Warehouse;
+import at.fhtw.swen3.services.dto.Error;
+import at.fhtw.swen3.services.dto.Hop;
+import at.fhtw.swen3.services.dto.WarehouseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,12 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -54,7 +48,7 @@ public interface WarehouseApi {
         tags = { "warehouse-management" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful response", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Warehouse.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = WarehouseDto.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -67,7 +61,7 @@ public interface WarehouseApi {
         value = "/warehouse",
         produces = { "application/json" }
     )
-    default ResponseEntity<Warehouse> exportWarehouses(
+    default ResponseEntity<WarehouseDto> exportWarehouses(
         
     ) {
         getRequest().ifPresent(request -> {
@@ -131,7 +125,7 @@ public interface WarehouseApi {
     /**
      * POST /warehouse : Imports a hierarchy of Warehouse and Truck objects. 
      *
-     * @param warehouse  (required)
+     * @param warehouseDto  (required)
      * @return Successfully loaded. (status code 200)
      *         or The operation failed due to an error. (status code 400)
      */
@@ -153,7 +147,7 @@ public interface WarehouseApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> importWarehouses(
-        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse
+        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody WarehouseDto warehouseDto
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
