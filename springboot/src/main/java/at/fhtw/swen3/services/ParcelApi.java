@@ -27,6 +27,7 @@ import javax.validation.constraints.*;
 import java.util.Optional;
 import javax.annotation.Generated;
 
+
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 @Validated
 @Tag(name = "parcel", description = "Operations for the logistics staff.")

@@ -26,7 +26,7 @@ public class Parcel {
     @Column
     private Long id;
 
-    @Column
+    @Column @NotNull
     private String trackingId;
     @Column @Size(min = 0, message="weight must be over 0")
     private Float weight;
