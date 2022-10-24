@@ -21,7 +21,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file springboot/pom.xml
+      run: mvn -B package --file pom.xml
     - name: Upload JAR
         #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
       uses: actions/upload-artifact@v2
