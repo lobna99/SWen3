@@ -1,4 +1,4 @@
 package at.fhtw.swen3.model.repositories;
 
-public class RecipientEntity {
+public class ParcelRepository {
 }
