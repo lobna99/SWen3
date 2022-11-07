@@ -1,3 +1,4 @@
+at\fhtw\swen3\model\repositories\TruckEntity.class
 at\fhtw\swen3\RFC3339DateFormat.class
 at\fhtw\swen3\services\mapper\AbstractMapper.class
 at\fhtw\swen3\services\dto\TransferwarehouseDto.class
@@ -8,9 +9,12 @@ at\fhtw\swen3\services\dto\NewParcelInfo.class
 at\fhtw\swen3\services\dto\ParcelDTO.class
 at\fhtw\swen3\services\dto\TrackingInformation$StateEnum.class
 at\fhtw\swen3\services\mapper\RecipientMapper.class
+at\fhtw\swen3\services\mapper\WarehouseMapperImpl.class
 at\fhtw\swen3\services\mapper\Mapper.class
 at\fhtw\swen3\configuration\SpringDocConfiguration.class
 at\fhtw\swen3\services\mapper\WarehouseMapper.class
+at\fhtw\swen3\model\repositories\ParcelEntity.class
+at\fhtw\swen3\services\mapper\TruckMapperImpl.class
 at\fhtw\swen3\services\dto\WarehouseNextHops.class
 at\fhtw\swen3\services\impl\WarehouseApiController.class
 at\fhtw\swen3\services\ParcelApi.class
@@ -18,11 +22,14 @@ at\fhtw\swen3\persistence\entity\Parcel.class
 at\fhtw\swen3\services\dto\Error.class
 at\fhtw\swen3\services\mapper\ParcelMapper.class
 at\fhtw\swen3\configuration\HomeController.class
+at\fhtw\swen3\model\repositories\RecipientEntity.class
 at\fhtw\swen3\OpenApiGeneratorApplication.class
 at\fhtw\swen3\persistence\entity\Truck.class
 at\fhtw\swen3\services\dto\RecipientDto.class
+at\fhtw\swen3\services\mapper\RecipientMapperImpl.class
 at\fhtw\swen3\services\ApiUtil.class
 at\fhtw\swen3\services\dto\WarehouseDto.class
+at\fhtw\swen3\services\mapper\ParcelMapperImpl.class
 at\fhtw\swen3\services\dto\TruckDto.class
 at\fhtw\swen3\services\mapper\TruckMapper.class
 at\fhtw\swen3\persistence\entity\Recipient.class
@@ -30,3 +37,4 @@ at\fhtw\swen3\services\dto\Hop.class
 at\fhtw\swen3\services\dto\TrackingInformation.class
 at\fhtw\swen3\services\WarehouseApi.class
 at\fhtw\swen3\services\dto\HopArrival.class
+at\fhtw\swen3\model\repositories\WarehouseEntity.class

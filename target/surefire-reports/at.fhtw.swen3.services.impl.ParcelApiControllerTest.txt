@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: at.fhtw.swen3.services.impl.ParcelApiControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s - in at.fhtw.swen3.services.impl.ParcelApiControllerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in at.fhtw.swen3.services.impl.ParcelApiControllerTest
