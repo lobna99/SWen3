@@ -7,7 +7,7 @@ package at.fhtw.swen3.services;
 
 import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
-import at.fhtw.swen3.services.dto.ParcelDTO;
+import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -109,7 +109,7 @@ public interface ParcelApi {
     /**
      * POST /parcel : Submit a new parcel to the logistics service. 
      *
-     * @param parcelDTO  (required)
+     * @param parcel  (required)
      * @return Successfully submitted the new parcel (status code 201)
      *         or The operation failed due to an error. (status code 400)
      *         or The address of sender or receiver was not found. (status code 404)
@@ -137,7 +137,7 @@ public interface ParcelApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<NewParcelInfo> submitParcel(
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody ParcelDTO parcelDTO
+        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -201,7 +201,7 @@ public interface ParcelApi {
      * POST /parcel/{trackingId} : Transfer an existing parcel into the system from the service of a logistics partner. 
      *
      * @param trackingId The tracking ID of the parcel. E.g. PYJRB4HZ6  (required)
-     * @param parcelDTO  (required)
+     * @param parcel  (required)
      * @return Successfully transitioned the parcel (status code 200)
      *         or The operation failed due to an error. (status code 400)
      *         or A parcel with the specified trackingID is already in the system. (status code 409)
@@ -228,7 +228,7 @@ public interface ParcelApi {
     )
     default ResponseEntity<NewParcelInfo> transitionParcel(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId,
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody ParcelDTO parcelDTO
+        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

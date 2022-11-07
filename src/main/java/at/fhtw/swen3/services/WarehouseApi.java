@@ -7,7 +7,7 @@ package at.fhtw.swen3.services;
 
 import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.dto.Hop;
-import at.fhtw.swen3.services.dto.WarehouseDto;
+import at.fhtw.swen3.services.dto.Warehouse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -48,7 +48,7 @@ public interface WarehouseApi {
         tags = { "warehouse-management" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful response", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = WarehouseDto.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Warehouse.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -61,7 +61,7 @@ public interface WarehouseApi {
         value = "/warehouse",
         produces = { "application/json" }
     )
-    default ResponseEntity<WarehouseDto> exportWarehouses(
+    default ResponseEntity<Warehouse> exportWarehouses(
         
     ) {
         getRequest().ifPresent(request -> {
@@ -125,7 +125,7 @@ public interface WarehouseApi {
     /**
      * POST /warehouse : Imports a hierarchy of Warehouse and Truck objects. 
      *
-     * @param warehouseDto  (required)
+     * @param warehouse  (required)
      * @return Successfully loaded. (status code 200)
      *         or The operation failed due to an error. (status code 400)
      */
@@ -147,7 +147,7 @@ public interface WarehouseApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> importWarehouses(
-        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody WarehouseDto warehouseDto
+        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
