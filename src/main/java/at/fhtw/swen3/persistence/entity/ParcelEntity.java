@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @Getter @Setter
 @Entity
-public class Parcel {
+public class ParcelEntity {
 
 
     @Id

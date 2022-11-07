@@ -2,7 +2,7 @@ package at.fhtw.swen3.persistence.entity;
 
 import org.junit.jupiter.api.Test;
 
-class ParcelTest {
+class ParcelRepositoryTest {
 
 
 

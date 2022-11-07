@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @Entity
-public class Warehouse {
+public class WarehouseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

@@ -1,7 +1,6 @@
 package at.fhtw.swen3.persistence.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @Entity
-public class Recipient {
+public class RecipientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

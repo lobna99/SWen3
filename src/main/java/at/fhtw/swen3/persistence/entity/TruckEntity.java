@@ -1,7 +1,6 @@
 package at.fhtw.swen3.persistence.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Truck {
+public class TruckEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
