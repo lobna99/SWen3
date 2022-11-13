@@ -13,6 +13,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @Entity
+@Table(name = "t_recipient")
 public class RecipientEntity {
 
     @Id
@@ -24,7 +25,7 @@ public class RecipientEntity {
     @Column @Pattern(regexp = "^[A-Z]+[a-zA-Z',.\\s-]")@NotNull(message = "Name cannot be null")
     private String name;
 
-    @Column @Pattern(regexp = "\\A(.*?)\\s+(\\d+[a-zA-Z]{0,1}\\s{0,1}[/]{1}\\s{0,1}\\d*[a-zA-Z]{0,1}|\\d+[a-zA-Z-]{0,1}\\d*[a-zA-Z]{0,1})+()$")@NotNull(message = "Name cannot be null")
+    @Column @Pattern(regexp = "\\A(.*?)\\s+(\\d+[a-zA-Z]{0,1}\\s{0,1}[/]{1}\\s{0,1}\\d*[a-zA-Z]{0,1}|\\d+[a-zA-Z-]{0,1}\\d*[a-zA-Z]{0,1})$")@NotNull(message = "Name cannot be null")
     private String street;
 
     @Column @Pattern(regexp = "^A-[0-9]{4}$") @NotNull(message = "Name cannot be null")

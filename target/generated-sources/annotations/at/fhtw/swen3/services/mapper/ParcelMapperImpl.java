@@ -1,35 +1,35 @@
 package at.fhtw.swen3.services.mapper;
 
-import at.fhtw.swen3.persistence.entity.Parcel;
-import at.fhtw.swen3.services.dto.ParcelDTO;
+import at.fhtw.swen3.persistence.entity.ParcelEntity;
+import at.fhtw.swen3.services.dto.Parcel;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-19T17:38:11+0200",
+    date = "2022-11-13T23:31:09+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {
 
     @Override
-    public ParcelDTO entityToDto(Parcel parcel) {
-        if ( parcel == null ) {
-            return null;
-        }
-
-        ParcelDTO parcelDTO = new ParcelDTO();
-
-        return parcelDTO;
-    }
-
-    @Override
-    public Parcel dtoToEntity(ParcelDTO parcelDTO) {
-        if ( parcelDTO == null ) {
+    public Parcel entityToDto(ParcelEntity parcelEntity) {
+        if ( parcelEntity == null ) {
             return null;
         }
 
         Parcel parcel = new Parcel();
 
         return parcel;
+    }
+
+    @Override
+    public ParcelEntity dtoToEntity(Parcel parcel) {
+        if ( parcel == null ) {
+            return null;
+        }
+
+        ParcelEntity parcelEntity = new ParcelEntity();
+
+        return parcelEntity;
     }
 }

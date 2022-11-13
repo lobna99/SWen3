@@ -12,6 +12,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @Entity
+@Table(name = "warehouse")
 public class WarehouseEntity {
 
     @Id
@@ -20,7 +21,7 @@ public class WarehouseEntity {
     private Long id;
 
 
-    @Column @Pattern(regexp = "\\A(.*?)\\s+(\\d+[a-zA-Z]{0,1}\\s{0,1}[/]{1}\\s{0,1}\\d*[a-zA-Z]{0,1}|\\d+[a-zA-Z-]{0,1}\\d*[a-zA-Z]{0,1})+()$")
+    @Column @Pattern(regexp = "\\A(.*?)\\s+(\\d+[a-zA-Z]{0,1}\\s{0,1}[/]{1}\\s{0,1}\\d*[a-zA-Z]{0,1}|\\d+[a-zA-Z-]{0,1}\\d*[a-zA-Z]{0,1})$")
     private String description;
 
     @Column
@@ -32,9 +33,4 @@ public class WarehouseEntity {
     @Column
     private String locationName;
 
-    @Column
-    private String logisticsPartner;
-
-    @Column
-    private String logisticsPartnerUrl;
 }
