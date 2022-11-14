@@ -4,6 +4,7 @@ import at.fhtw.swen3.services.dto.Parcel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 public class ParcelService {

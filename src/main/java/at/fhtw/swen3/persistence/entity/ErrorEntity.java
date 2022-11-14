@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_error")
+@Table(name = "error")
 public class ErrorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @Entity
-@Table(name = "warehouse")
+@Table(name = "warehouse",schema = "warehouses")
 public class WarehouseEntity {
 
     @Id
