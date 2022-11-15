@@ -35,15 +35,13 @@ public class ParcelEntity { //TODO: tests for every entity
     @DecimalMin("0.0")
     private Float weight;
 
-    @Column
     @NotNull(message = "Recipient cannot be null")
     @ManyToOne
-    //@JoinColumn(name = "fk_recipient")
+    @JoinColumn(name = "fk_recipient")
     private RecipientEntity recipient;
-    @Column
     @NotNull(message = "Sender cannot be null")
     @ManyToOne
-    //@JoinColumn(name = "fk_sender")
+    @JoinColumn(name = "fk_sender")
     private RecipientEntity sender;
     @Column
     private StateEnum state;
