@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "warehouseNextHops",schema = "warehouse")
+@Table(name = "warehouseNextHops")
 public class WarehouseNextHopsEntity {
 
     @Id

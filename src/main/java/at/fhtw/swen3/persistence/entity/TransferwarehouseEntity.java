@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transferwarehouse",schema = "warehouse")
+@Table(name = "transferwarehouse")
 public class TransferwarehouseEntity {
 
     @Id
