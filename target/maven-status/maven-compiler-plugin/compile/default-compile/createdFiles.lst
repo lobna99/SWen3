@@ -1,4 +1,3 @@
-at\fhtw\swen3\controller\rest\OpenApiGeneratorApplication.class
 at\fhtw\swen3\controller\WarehouseApiController.class
 at\fhtw\swen3\services\mapper\ErrorMapper.class
 at\fhtw\swen3\controller\rest\WarehouseApi.class
@@ -15,6 +14,7 @@ at\fhtw\swen3\services\mapper\Mapper.class
 at\fhtw\swen3\services\mapper\HopMapperImpl.class
 at\fhtw\swen3\persistence\entity\TruckEntity$TruckEntityBuilder.class
 at\fhtw\swen3\configuration\SpringDocConfiguration.class
+at\fhtw\swen3\services\impl\ParcelServiceImpl.class
 at\fhtw\swen3\persistence\repositories\TransferwarehouseRepository.class
 at\fhtw\swen3\services\mapper\GeoCoordinateMapperImpl.class
 at\fhtw\swen3\services\mapper\HopArrivalMapper.class
@@ -39,9 +39,9 @@ at\fhtw\swen3\persistence\entity\TransferwarehouseEntity$TransferwarehouseEntity
 at\fhtw\swen3\persistence\repositories\TruckRepository.class
 at\fhtw\swen3\persistence\entity\ErrorEntity.class
 at\fhtw\swen3\persistence\entity\HopEntity.class
+at\fhtw\swen3\RFC3339DateFormat.class
 at\fhtw\swen3\persistence\entity\GeoCoordinateEntity.class
 at\fhtw\swen3\persistence\repositories\RecipientRepository.class
-at\fhtw\swen3\configuration\RFC3339DateFormat.class
 at\fhtw\swen3\services\dto\NewParcelInfo.class
 at\fhtw\swen3\services\dto\Transferwarehouse.class
 at\fhtw\swen3\services\mapper\WarehouseNextHopsMapperImpl.class
@@ -49,12 +49,12 @@ at\fhtw\swen3\persistence\entity\HopArrivalEntity.class
 at\fhtw\swen3\services\mapper\RecipientMapper.class
 at\fhtw\swen3\services\mapper\TransferwarehouseMapperImpl.class
 at\fhtw\swen3\services\mapper\HopArrivalMapperImpl.class
+at\fhtw\swen3\configuration\AppConfig.class
 at\fhtw\swen3\persistence\repositories\WarehouseRepository.class
 at\fhtw\swen3\services\mapper\WarehouseMapper.class
 at\fhtw\swen3\controller\rest\ParcelApi.class
 at\fhtw\swen3\services\ParcelService.class
 at\fhtw\swen3\services\mapper\ErrorMapperImpl.class
-at\fhtw\swen3\services\ParcelLogic.class
 at\fhtw\swen3\persistence\entity\ErrorEntity$ErrorEntityBuilder.class
 at\fhtw\swen3\persistence\repositories\ErrorRepository.class
 at\fhtw\swen3\persistence\DBconnection.class
@@ -66,6 +66,7 @@ at\fhtw\swen3\services\dto\Parcel.class
 at\fhtw\swen3\persistence\entity\WarehouseEntity.class
 at\fhtw\swen3\services\dto\Warehouse.class
 at\fhtw\swen3\services\mapper\ParcelMapper.class
+at\fhtw\swen3\OpenApiGeneratorApplication.class
 at\fhtw\swen3\services\dto\Recipient.class
 at\fhtw\swen3\persistence\entity\TransferwarehouseEntity.class
 at\fhtw\swen3\services\mapper\HopMapper.class
