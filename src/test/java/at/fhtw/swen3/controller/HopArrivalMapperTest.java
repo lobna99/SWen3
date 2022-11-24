@@ -2,7 +2,7 @@ package at.fhtw.swen3.controller;
 
 import at.fhtw.swen3.persistence.entity.HopArrivalEntity;
 import at.fhtw.swen3.services.dto.HopArrival;
-import at.fhtw.swen3.services.mapper.HopArrivalMapper;
+import at.fhtw.swen3.services.mapper.HopArrivalMapperImpl;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
