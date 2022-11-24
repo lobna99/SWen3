@@ -1,4 +1,4 @@
-package at.fhtw.swen3.controller;
+package at.fhtw.swen3.persistence.entity;
 
 import at.fhtw.swen3.persistence.entity.ParcelEntity;
 import org.junit.jupiter.api.Test;

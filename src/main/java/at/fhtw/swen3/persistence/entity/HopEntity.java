@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Table(name = "t_hopEntity")
 public class HopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
