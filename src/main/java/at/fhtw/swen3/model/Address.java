@@ -1,4 +1,4 @@
-package at.fhtw.swen3.gps;
+package at.fhtw.swen3.model;
 
 
 import lombok.Builder;
