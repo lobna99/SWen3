@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class HttpRequest {
 
-    public String getResponse(String url) throws IOException {
+    public static String getResponse(String url) throws IOException {
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -38,7 +38,7 @@ public class HttpRequest {
 
     }
 
-    public JsonNode getJsonnode(String content) {
+    public static JsonNode getJsonnode(String content) {
         ObjectMapper mapper = new ObjectMapper();
         if (!Objects.equals(content, "")) {
             try {
