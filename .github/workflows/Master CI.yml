@@ -38,18 +38,6 @@ jobs:
           #From this path
         path: target/openapi-spring-1.22.1.jar
 
-    - name: Write value to Properties-file
-      uses: christian-draeger/write-properties@1.1.0
-      with:
-        path: './src/main/resources/database.properties'
-        property: |
-          'database_url'
-          'database_user'
-          'database_password'
-        value: |
-          ${{ secrets.DB_CONNECTION_STRING }}
-          ${{ secrets.DB_CONNECTION_USERNAME }}
-          ${{ secrets.DB_CONNECTION_PASSWORD }}
 #Deploy's job
   deploy:
     #Depends on build's job
