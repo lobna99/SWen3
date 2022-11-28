@@ -8,7 +8,10 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
+env: 
+  POSTGRES_USER: ${{secrets.DB_CONNECTION_USERNAME}}
+  POSTGRES_PASS: ${{secrets.DB_CONNECTION_PASSWORD}}
+  POSTGRES_URL: ${{secrets.DB_CONNECTION_STRING}}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,16 +25,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      env: 
-        POSTGRES_USER: ${{secrets.DB_CONNECTION_USERNAME}}
-        POSTGRES_PASS: ${{secrets.DB_CONNECTION_PASSWORD}}
-        POSTGRES_URL: ${{secrets.DB_CONNECTION_STRING}}
+    
       run: mvn -B package --file pom.xml
     - name: Upload JAR
-      env: 
-        POSTGRES_USER: ${{secrets.DB_CONNECTION_USERNAME}}
-        POSTGRES_PASS: ${{secrets.DB_CONNECTION_PASSWORD}}
-        POSTGRES_URL: ${{secrets.DB_CONNECTION_STRING}}
         #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
       uses: actions/upload-artifact@v2
       with:
