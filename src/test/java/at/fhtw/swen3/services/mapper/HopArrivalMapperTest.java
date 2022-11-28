@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HopArrivalMapperTest {
 
-    @Test
+  /*  @Test
     void entityToDtoTest() {
         HopArrivalEntity hopArrivalEntity = new HopArrivalEntity();
         hopArrivalEntity.setCode("HJTH8G6OI");
@@ -41,6 +41,6 @@ public class HopArrivalMapperTest {
         assertEquals(hopArrival.getCode(), hopArrivalEntity.getCode());
         assertEquals(hopArrival.getDescription(), hopArrivalEntity.getDescription());
         assertEquals(hopArrival.getDateTime(), hopArrivalEntity.getDateTime());
-    }
+    }*/
 
 }
