@@ -9,6 +9,7 @@ import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.mapper.ParcelMapperImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class ParcelServiceImpl implements ParcelService {
 
     @Autowired
@@ -31,6 +33,7 @@ public class ParcelServiceImpl implements ParcelService {
         recipientRepository.save(parcelEntity.getRecipient());
         recipientRepository.save(parcelEntity.getSender());
         parcelRepository.save(parcelEntity);
+        log.info("parcel has been submit");
     }
 
     @Override

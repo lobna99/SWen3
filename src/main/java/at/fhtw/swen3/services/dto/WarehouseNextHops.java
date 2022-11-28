@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -16,6 +17,7 @@ import javax.annotation.Generated;
  * WarehouseNextHops
  */
 
+@Slf4j
 @JsonTypeName("warehouse_nextHops")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class WarehouseNextHops {
@@ -28,6 +30,7 @@ public class WarehouseNextHops {
 
   public WarehouseNextHops traveltimeMins(Integer traveltimeMins) {
     this.traveltimeMins = traveltimeMins;
+    log.info("travelTimeMins set");
     return this;
   }
 
@@ -43,10 +46,12 @@ public class WarehouseNextHops {
 
   public void setTraveltimeMins(Integer traveltimeMins) {
     this.traveltimeMins = traveltimeMins;
+    log.info("travelTimeMins reset");
   }
 
   public WarehouseNextHops hop(Hop hop) {
     this.hop = hop;
+    log.info("hop set");
     return this;
   }
 
@@ -62,6 +67,7 @@ public class WarehouseNextHops {
 
   public void setHop(Hop hop) {
     this.hop = hop;
+    log.info("hop reset");
   }
 
   @Override

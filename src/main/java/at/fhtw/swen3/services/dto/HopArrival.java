@@ -4,6 +4,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import javax.annotation.Generated;
  * HopArrival
  */
 
+@Slf4j
 @JsonTypeName("hopArrival")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class HopArrival {
@@ -48,10 +51,12 @@ public class HopArrival {
 
   public void setCode(String code) {
     this.code = code;
+    log.info("hop arrival code has been set");
   }
 
   public HopArrival description(String description) {
     this.description = description;
+    log.info("hop arrival description has been set");
     return this;
   }
 
@@ -67,10 +72,12 @@ public class HopArrival {
 
   public void setDescription(String description) {
     this.description = description;
+    log.info("hop arrival code has been reset");
   }
 
   public HopArrival dateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
+    log.info("dateTime has been set to {}", this.code);
     return this;
   }
 
@@ -86,6 +93,7 @@ public class HopArrival {
 
   public void setDateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
+    log.info("dateTime has been set to {}", this.code);
   }
 
   @Override

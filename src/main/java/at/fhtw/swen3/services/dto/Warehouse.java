@@ -9,6 +9,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -17,7 +18,7 @@ import javax.annotation.Generated;
  * Warehouse
  */
 
-
+@Slf4j
 @JsonTypeName("warehouse")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class Warehouse extends Hop {
@@ -31,6 +32,7 @@ public class Warehouse extends Hop {
 
   public Warehouse level(Integer level) {
     this.level = level;
+    log.info("level set");
     return this;
   }
 
@@ -46,15 +48,18 @@ public class Warehouse extends Hop {
 
   public void setLevel(Integer level) {
     this.level = level;
+    log.info("level reset");
   }
 
   public Warehouse nextHops(List<WarehouseNextHops> nextHops) {
     this.nextHops = nextHops;
+    log.info("nextHops set");
     return this;
   }
 
   public Warehouse addNextHopsItem(WarehouseNextHops nextHopsItem) {
     this.nextHops.add(nextHopsItem);
+    log.info("nextHopsItem added");
     return this;
   }
 

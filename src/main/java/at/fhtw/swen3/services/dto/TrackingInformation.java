@@ -11,6 +11,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -19,6 +20,7 @@ import javax.annotation.Generated;
  * TrackingInformation
  */
 
+@Slf4j
 @JsonTypeName("trackingInformation")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class TrackingInformation {
@@ -77,6 +79,7 @@ public class TrackingInformation {
 
   public TrackingInformation state(StateEnum state) {
     this.state = state;
+    log.info("tracking state set");
     return this;
   }
 
@@ -92,15 +95,18 @@ public class TrackingInformation {
 
   public void setState(StateEnum state) {
     this.state = state;
+    log.info("tracking state reset");
   }
 
   public TrackingInformation visitedHops(List<HopArrival> visitedHops) {
     this.visitedHops = visitedHops;
+    log.info("visited hops set");
     return this;
   }
 
   public TrackingInformation addVisitedHopsItem(HopArrival visitedHopsItem) {
     this.visitedHops.add(visitedHopsItem);
+    log.info("visited hops item added");
     return this;
   }
 
@@ -120,11 +126,13 @@ public class TrackingInformation {
 
   public TrackingInformation futureHops(List<HopArrival> futureHops) {
     this.futureHops = futureHops;
+    log.info("future hops set");
     return this;
   }
 
   public TrackingInformation addFutureHopsItem(HopArrival futureHopsItem) {
     this.futureHops.add(futureHopsItem);
+    log.info("future hops item added");
     return this;
   }
 
