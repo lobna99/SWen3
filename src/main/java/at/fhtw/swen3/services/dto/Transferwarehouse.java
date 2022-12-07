@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -15,7 +16,7 @@ import javax.annotation.Generated;
  * Transferwarehouse
  */
 
-
+@Slf4j
 @JsonTypeName("transferwarehouse")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class Transferwarehouse extends Hop {
@@ -31,6 +32,7 @@ public class Transferwarehouse extends Hop {
 
   public Transferwarehouse regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
+    log.info("regionGeoJson set");
     return this;
   }
 
@@ -46,10 +48,12 @@ public class Transferwarehouse extends Hop {
 
   public void setRegionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
+    log.info("regionGeoJson reset");
   }
 
   public Transferwarehouse logisticsPartner(String logisticsPartner) {
     this.logisticsPartner = logisticsPartner;
+    log.info("logistics partner set");
     return this;
   }
 
@@ -65,10 +69,12 @@ public class Transferwarehouse extends Hop {
 
   public void setLogisticsPartner(String logisticsPartner) {
     this.logisticsPartner = logisticsPartner;
+    log.info("logistics partner reset");
   }
 
   public Transferwarehouse logisticsPartnerUrl(String logisticsPartnerUrl) {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
+    log.info("logistics partner url set");
     return this;
   }
 
@@ -84,6 +90,7 @@ public class Transferwarehouse extends Hop {
 
   public void setLogisticsPartnerUrl(String logisticsPartnerUrl) {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
+    log.info("logistics patner url reset");
   }
 
   public Transferwarehouse hopType(String hopType) {

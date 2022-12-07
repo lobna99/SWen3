@@ -5,10 +5,12 @@ import at.fhtw.swen3.model.Address;
 import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.persistence.entity.GeoCoordinateEntity;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.Objects;
 
+@Slf4j
 public class MapsEncodingProxy implements GeoEncodingService {
     @Override
     public GeoCoordinateEntity encodeAddress(Address a) {
@@ -19,8 +21,10 @@ public class MapsEncodingProxy implements GeoEncodingService {
             if (obj != null) {
                 geoCoordinateEntity.setLat(Double.valueOf(obj.get("lat").textValue()));
                 geoCoordinateEntity.setLon(Double.valueOf(obj.get("lon").textValue()));
+                log.info("Geo coordinated have been found");
                 return geoCoordinateEntity;
             }else{
+                log.info("no geo coordinates found");
                 return null;
             }
         } catch (IOException e) {

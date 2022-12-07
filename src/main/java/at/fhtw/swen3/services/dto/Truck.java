@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -15,7 +16,7 @@ import javax.annotation.Generated;
  * Truck
  */
 
-
+@Slf4j
 @JsonTypeName("truck")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class Truck extends Hop {
@@ -28,6 +29,7 @@ public class Truck extends Hop {
 
   public Truck regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
+    log.info("regionGeoJson set");
     return this;
   }
 
@@ -43,10 +45,12 @@ public class Truck extends Hop {
 
   public void setRegionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
+    log.info("regionGeoJson reset");
   }
 
   public Truck numberPlate(String numberPlate) {
     this.numberPlate = numberPlate;
+    log.info("number plate set");
     return this;
   }
 
@@ -62,6 +66,7 @@ public class Truck extends Hop {
 
   public void setNumberPlate(String numberPlate) {
     this.numberPlate = numberPlate;
+    log.info("number plate reset");
   }
 
   public Truck hopType(String hopType) {

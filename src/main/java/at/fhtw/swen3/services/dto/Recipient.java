@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -17,6 +18,7 @@ import javax.annotation.Generated;
  * Recipient
  */
 
+@Slf4j
 @JsonTypeName("recipient")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class Recipient {
@@ -38,6 +40,7 @@ public class Recipient {
 
   public Recipient name(String name) {
     this.name = name;
+    log.info("reciepinet set");
     return this;
   }
 
@@ -53,10 +56,12 @@ public class Recipient {
 
   public void setName(String name) {
     this.name = name;
+    log.info("name set");
   }
 
   public Recipient street(String street) {
     this.street = street;
+    log.info("street set");
     return this;
   }
 
@@ -72,10 +77,12 @@ public class Recipient {
 
   public void setStreet(String street) {
     this.street = street;
+    log.info("street reset");
   }
 
   public Recipient postalCode(String postalCode) {
     this.postalCode = postalCode;
+    log.info("postal code set");
     return this;
   }
 
@@ -91,10 +98,12 @@ public class Recipient {
 
   public void setPostalCode(String postalCode) {
     this.postalCode = postalCode;
+    log.info("postal code restet");
   }
 
   public Recipient city(String city) {
     this.city = city;
+    log.info("city set");
     return this;
   }
 
@@ -110,10 +119,12 @@ public class Recipient {
 
   public void setCity(String city) {
     this.city = city;
+    log.info("city reset");
   }
 
   public Recipient country(String country) {
     this.country = country;
+    log.info("country set");
     return this;
   }
 
@@ -129,6 +140,7 @@ public class Recipient {
 
   public void setCountry(String country) {
     this.country = country;
+    log.info("cournty reset");
   }
 
   @Override

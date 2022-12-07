@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.extern.slf4j.Slf4j;
 
 
 import javax.annotation.Generated;
@@ -14,6 +15,7 @@ import javax.annotation.Generated;
  * NewParcelInfo
  */
 
+@Slf4j
 @JsonTypeName("newParcelInfo")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")
 public class NewParcelInfo {
@@ -23,6 +25,7 @@ public class NewParcelInfo {
 
   public NewParcelInfo trackingId(String trackingId) {
     this.trackingId = trackingId;
+    log.info("tracking id set");
     return this;
   }
 
@@ -38,6 +41,7 @@ public class NewParcelInfo {
 
   public void setTrackingId(String trackingId) {
     this.trackingId = trackingId;
+    log.info("trackeing id set");
   }
 
   @Override
