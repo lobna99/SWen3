@@ -1,10 +1,13 @@
 package at.fhtw.swen3.persistence.entity;
 
 
+import at.fhtw.swen3.services.dto.Hop;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,5 +35,19 @@ public class WarehouseEntity {
 
     @Column
     private String locationName;
+
+    @OneToOne
+    @JoinColumn
+    private GeoCoordinateEntity locationCoordinates;
+
+    @Column
+    private Integer level;
+
+    @Column
+    @NotNull
+    @OneToMany
+    private List<WarehouseNextHopsEntity> nextHops;
+
+
 
 }

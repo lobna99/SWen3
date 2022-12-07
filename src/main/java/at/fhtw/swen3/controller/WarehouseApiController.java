@@ -2,7 +2,11 @@ package at.fhtw.swen3.controller;
 
 
 import at.fhtw.swen3.controller.rest.WarehouseApi;
+import at.fhtw.swen3.services.WarehouseService;
+import at.fhtw.swen3.services.dto.Warehouse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;
 
@@ -16,8 +20,12 @@ public class WarehouseApiController implements WarehouseApi {
     private final NativeWebRequest request;
 
     @Autowired
-    public WarehouseApiController(NativeWebRequest request) {
+    private final WarehouseService warehouseService;
+
+    @Autowired
+    public WarehouseApiController(NativeWebRequest request, WarehouseService warehouseService) {
         this.request = request;
+        this.warehouseService = warehouseService;
     }
 
     @Override
@@ -25,4 +33,9 @@ public class WarehouseApiController implements WarehouseApi {
         return Optional.ofNullable(request);
     }
 
+
+    @Override
+    public ResponseEntity<Warehouse> exportWarehouses() {
+        return new ResponseEntity<Warehouse>(warehouseService.getWarehouse(), HttpStatus.OK);
+    }
 }
