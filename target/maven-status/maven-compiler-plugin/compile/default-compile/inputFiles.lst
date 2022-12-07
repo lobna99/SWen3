@@ -1,5 +1,6 @@
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\persistence\entity\HopEntity.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\persistence\entity\ParcelEntity.java
+C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\gps\service\GeoEncodingService.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\persistence\repositories\WarehouseNextHopsRepository.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\dto\Hop.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\mapper\ErrorMapper.java
@@ -13,8 +14,8 @@ C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\dto\TrackingI
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\OpenApiGeneratorApplication.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\mapper\HopMapper.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\persistence\repositories\RecipientRepository.java
-C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\persistence\DBconnection.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\mapper\TransferwarehouseMapper.java
+C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\gps\service\impl\MapsEncodingProxy.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\mapper\Mapper.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\configuration\SpringDocConfiguration.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\dto\Truck.java
@@ -51,5 +52,7 @@ C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\dto\Parcel.ja
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\mapper\HopArrivalMapper.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\persistence\repositories\HopArrivalRepository.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\dto\Warehouse.java
+C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\model\Address.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\dto\GeoCoordinate.java
 C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\services\mapper\TruckMapper.java
+C:\Users\bouta\IdeaProjects\5\src\main\java\at\fhtw\swen3\gps\HttpRequest.java

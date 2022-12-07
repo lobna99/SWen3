@@ -27,7 +27,12 @@ public class ParcelServiceImpl implements ParcelService {
     private final RecipientRepository recipientRepository;
 
     @Override
-    public void submitNewParcel(ParcelEntity parcelEntity) {
+    public void submitNewParcel(Parcel parcel) {
+
+        ParcelMapperImpl parcelMapper = new ParcelMapperImpl();
+
+        ParcelEntity parcelEntity = parcelMapper.dtoToEntity(parcel);
+
         recipientRepository.save(parcelEntity.getRecipient());
         recipientRepository.save(parcelEntity.getSender());
         parcelRepository.save(parcelEntity);

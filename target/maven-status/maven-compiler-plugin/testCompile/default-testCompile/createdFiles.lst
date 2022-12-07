@@ -1,2 +1,4 @@
-at\fhtw\swen3\controller\ParcelApiControllerTest.class
-at\fhtw\swen3\controller\WarehouseApiControllerTest.class
+at\fhtw\swen3\persistence\entity\ParcelEntityTest.class
+at\fhtw\swen3\services\mapper\HopArrivalMapperTest.class
+at\fhtw\swen3\gps\service\impl\MapsEncodingProxyTest.class
+at\fhtw\swen3\persistence\entity\WarehouseEntityTest.class

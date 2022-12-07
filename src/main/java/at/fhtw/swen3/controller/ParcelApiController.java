@@ -2,7 +2,12 @@ package at.fhtw.swen3.controller;
 
 
 import at.fhtw.swen3.controller.rest.ParcelApi;
+import at.fhtw.swen3.services.ParcelService;
+import at.fhtw.swen3.services.dto.NewParcelInfo;
+import at.fhtw.swen3.services.dto.Parcel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;
 
@@ -16,8 +21,11 @@ public class ParcelApiController implements ParcelApi {
     private final NativeWebRequest request;
 
     @Autowired
-    public ParcelApiController(NativeWebRequest request) {
+    private final ParcelService parcelService;
+    @Autowired
+    public ParcelApiController(NativeWebRequest request, ParcelService parcelService) {
         this.request = request;
+        this.parcelService = parcelService;
     }
 
     @Override
@@ -25,4 +33,11 @@ public class ParcelApiController implements ParcelApi {
         return Optional.ofNullable(request);
     }
 
+    @Override
+    public ResponseEntity<NewParcelInfo> submitParcel(Parcel parcel) {
+
+        parcelService.submitNewParcel(parcel);
+        
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
