@@ -1,17 +1,16 @@
 package at.fhtw.swen3.persistence.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Builder
-@Getter
-@Setter
+@SuperBuilder
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_hopEntity")
 public class HopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

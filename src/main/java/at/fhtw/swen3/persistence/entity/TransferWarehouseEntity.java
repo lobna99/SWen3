@@ -6,18 +6,12 @@ import javax.persistence.*;
 
 
 @Entity
-@Builder
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transferwarehouse")
-public class TransferwarehouseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class TransferWarehouseEntity extends HopEntity {
 
 
     @Column

@@ -7,17 +7,12 @@ import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
 @Setter
 @Entity
-@Table(name = "truck")
-public class TruckEntity {
+public class TruckEntity extends HopEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
-    @Column
-    private Long id;
 
 
     @Column

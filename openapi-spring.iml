@@ -17,7 +17,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="noname-a.xml@0" value="53783ea3-86f8-4488-aa01-88d38cf31e1f" />
-          <factory-entry name="openapi-spring" />
+          <factory-entry name="openapi-spring" value="53783ea3-86f8-4488-aa01-88d38cf31e1f" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

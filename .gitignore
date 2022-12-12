@@ -1,0 +1,10 @@
+# ignore target directory
+target/
+
+# ignore IntelliJ IDEA files
+.idea/
+*.iml
+
+# ignore Maven wrapper
+mvnw
+mvnw.cmd

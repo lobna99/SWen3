@@ -1,53 +1,26 @@
 package at.fhtw.swen3.persistence.entity;
 
 
-import at.fhtw.swen3.services.dto.Hop;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SuperBuilder
 @NoArgsConstructor
-@Builder
-@Getter
-@Setter
 @Entity
-@Table(name = "warehouse")
-public class WarehouseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
-    @Column
-    private Long id;
+public class WarehouseEntity extends HopEntity{
 
 
-    @Column @Pattern(regexp = "\\A(.*?)\\s+(\\d+[a-zA-Z]{0,1}\\s{0,1}[/]{1}\\s{0,1}\\d*[a-zA-Z]{0,1}|\\d+[a-zA-Z-]{0,1}\\d*[a-zA-Z]{0,1})$")
-    private String description;
-
-    @Column
-    private String code;
-
-    @Column
-    private String hopType;
-
-    @Column
-    private String locationName;
-
-    @OneToOne
-    @JoinColumn
-    private GeoCoordinateEntity locationCoordinates;
-
-    @Column
+    @Column(name = "level", nullable = false)
     private Integer level;
 
     @Column
-    @NotNull
-    @OneToMany
+    @OneToMany(mappedBy = "hop")
     private List<WarehouseNextHopsEntity> nextHops;
-
-
-
 }
