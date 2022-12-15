@@ -1,7 +1,6 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
 
-import at.fhtw.swen3.services.dto.HopArrival;
 import at.fhtw.swen3.services.dto.TrackingInformation.StateEnum;
 import lombok.*;
 

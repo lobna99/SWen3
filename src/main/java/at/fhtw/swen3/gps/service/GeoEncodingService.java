@@ -1,7 +1,7 @@
 package at.fhtw.swen3.gps.service;
 
 import at.fhtw.swen3.model.Address;
-import at.fhtw.swen3.persistence.entity.GeoCoordinateEntity;
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import org.locationtech.jts.geom.Geometry;
 import org.springframework.stereotype.Service;
 

@@ -1,15 +1,5 @@
 package at.fhtw.swen3.services.mapper;
 
-import at.fhtw.swen3.persistence.entity.HopArrivalEntity;
-import at.fhtw.swen3.services.dto.HopArrival;
-import at.fhtw.swen3.services.mapper.HopArrivalMapperImpl;
-import org.junit.jupiter.api.Test;
-import org.mapstruct.factory.Mappers;
-
-import java.time.OffsetDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 public class HopArrivalMapperTest {
 

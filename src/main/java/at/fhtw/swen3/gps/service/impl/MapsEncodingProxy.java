@@ -3,7 +3,7 @@ package at.fhtw.swen3.gps.service.impl;
 import at.fhtw.swen3.gps.HttpRequest;
 import at.fhtw.swen3.model.Address;
 import at.fhtw.swen3.gps.service.GeoEncodingService;
-import at.fhtw.swen3.persistence.entity.GeoCoordinateEntity;
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.locationtech.jts.geom.Geometry;

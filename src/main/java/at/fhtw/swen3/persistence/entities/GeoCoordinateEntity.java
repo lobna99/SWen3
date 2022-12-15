@@ -1,9 +1,8 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
 
 import lombok.*;
 import org.locationtech.jts.geom.Point;
-import org.locationtech.jts.io.WKTReader;
 
 
 import javax.persistence.*;

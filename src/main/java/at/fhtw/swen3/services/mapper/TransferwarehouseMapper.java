@@ -1,6 +1,6 @@
 package at.fhtw.swen3.services.mapper;
 
-import at.fhtw.swen3.persistence.entity.TransferWarehouseEntity;
+import at.fhtw.swen3.persistence.entities.TransferWarehouseEntity;
 import at.fhtw.swen3.services.dto.Transferwarehouse;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

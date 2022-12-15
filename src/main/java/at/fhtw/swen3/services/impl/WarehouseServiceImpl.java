@@ -1,9 +1,9 @@
 package at.fhtw.swen3.services.impl;
 
-import at.fhtw.swen3.persistence.entity.TransferWarehouseEntity;
-import at.fhtw.swen3.persistence.entity.TruckEntity;
-import at.fhtw.swen3.persistence.entity.WarehouseEntity;
-import at.fhtw.swen3.persistence.entity.WarehouseNextHopsEntity;
+import at.fhtw.swen3.persistence.entities.TransferWarehouseEntity;
+import at.fhtw.swen3.persistence.entities.TruckEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.dto.Warehouse;

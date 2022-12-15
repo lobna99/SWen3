@@ -1,5 +1,4 @@
-package at.fhtw.swen3.persistence.entity;
-
+package at.fhtw.swen3.persistence.entities;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -7,21 +6,23 @@ import org.locationtech.jts.geom.Geometry;
 
 import javax.persistence.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
 @Setter
 @SuperBuilder
-@Entity
-public class TruckEntity extends HopEntity {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class TransferWarehouseEntity extends HopEntity {
 
 
     @Column
     private Geometry regionGeoJson;
 
     @Column
-    private String numberPlate;
+    private String logisticsPartner;
 
+    @Column
+    private String logisticsPartnerUrl;
 }
