@@ -23,7 +23,7 @@ public class HopEntity {
     private String hopType;
 
     @Column
-    @Pattern(regexp = "^[A-Za-zÄÖÜäöü0-9\\s\\-]+$")
+    @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
 
     @Column

@@ -15,9 +15,6 @@ public class WarehouseMapperConverter {
     private final TruckMapperImpl truckMapper = new TruckMapperImpl();
     private final TransferwarehouseMapperImpl transferwarehouseMapper = new TransferwarehouseMapperImpl();
 
-    private final List<WarehouseEntity> warehouseEntities = new ArrayList<>();
-    private final List<TransferWarehouseEntity> transferWarehouseEntities = new ArrayList<>();
-    private final List<TruckEntity> truckEntities = new ArrayList<>();
 
 
     public WarehouseEntity convert(Warehouse source) {
@@ -49,18 +46,14 @@ public class WarehouseMapperConverter {
                     Warehouse warehouse = (Warehouse) hop.getHop();
                     WarehouseEntity warehouseEntity = convert(warehouse);
                     warehouseNextHopsEntities.add(new WarehouseNextHopsEntity(null, hop.getTraveltimeMins(),warehouseEntity));
-                    warehouseEntities.add(warehouseEntity);
-                    //warehouseNextHopsEntities.addAll(convertNextHops(nextHops));
                     break;
                 case "truck":
                     TruckEntity truckEntity = truckMapper.dtoToEntity((Truck) hop.getHop());
                     warehouseNextHopsEntities.add(new WarehouseNextHopsEntity(null, hop.getTraveltimeMins(),truckEntity));
-                    truckEntities.add(truckEntity);
                     break;
                 case "transferwarehouse":
                     TransferWarehouseEntity transferWarehouseEntity = transferwarehouseMapper.dtoToEntity((Transferwarehouse) hop.getHop());
                     warehouseNextHopsEntities.add(new WarehouseNextHopsEntity(null, hop.getTraveltimeMins(),transferWarehouseEntity ));
-                    transferWarehouseEntities.add(transferWarehouseEntity);
                     break;
 
             }

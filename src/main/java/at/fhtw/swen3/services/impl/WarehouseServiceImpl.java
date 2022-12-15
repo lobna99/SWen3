@@ -33,6 +33,9 @@ public class WarehouseServiceImpl implements WarehouseService {
     private final TransferwarehouseRepository transferwarehouseRepository;
 
     @Autowired
+    private final WarehouseNextHopsRepository warehouseNextHopsRepository;
+
+    @Autowired
     private final GeoCoordinateRepository geoCoordinateRepository;
 
 
@@ -68,7 +71,7 @@ public class WarehouseServiceImpl implements WarehouseService {
         warehouseEntity.getLocationCoordinates().setPoint((Point) new WKTReader().read("POINT ("+warehouseEntity.getLocationCoordinates().getLon()+" "+warehouseEntity.getLocationCoordinates().getLat()+")"));
         geoCoordinateRepository.save(warehouseEntity.getLocationCoordinates());
         warehouseRepository.save(warehouseEntity);
-            saveAllHops(warehouseEntity.getNextHops());
+        saveAllHops(warehouseEntity.getNextHops());
         } catch (ParseException e) {
             e.printStackTrace();
         }
