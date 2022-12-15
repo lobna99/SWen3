@@ -31,7 +31,7 @@ public class ParcelEntity { //TODO: tests for every entity
     @NotNull
     private String trackingId;
     @Column
-    @Size(min = 0, message = "weight must be over 0")
+    @Size(message = "weight must be over 0")
     @DecimalMin("0.0")
     private Float weight;
 
@@ -47,12 +47,10 @@ public class ParcelEntity { //TODO: tests for every entity
     private StateEnum state;
 
     @Column
-    @NotNull
     @OneToMany
     private List<HopArrivalEntity> visitedHops;
 
     @Column
-    @NotNull
     @OneToMany
     private List<HopArrivalEntity> futureHops;
 }

@@ -6,6 +6,11 @@ import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.persistence.entity.GeoCoordinateEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
+
 
 import java.io.IOException;
 import java.util.Objects;
@@ -22,12 +27,26 @@ public class MapsEncodingProxy implements GeoEncodingService {
                 geoCoordinateEntity.setLat(Double.valueOf(obj.get("lat").textValue()));
                 geoCoordinateEntity.setLon(Double.valueOf(obj.get("lon").textValue()));
                 log.info("Geo coordinated have been found");
+                geoCoordinateEntity.setPoint((Point) wktToGeometry("POINT ("+geoCoordinateEntity.getLon()+" "+geoCoordinateEntity.getLat()+")"));
                 return geoCoordinateEntity;
             }else{
                 log.info("no geo coordinates found");
                 return null;
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Geometry wktToGeometry(String point) {
+        //TODO: exception handling
+
+
+        try {
+            return new WKTReader().read(point);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return null;

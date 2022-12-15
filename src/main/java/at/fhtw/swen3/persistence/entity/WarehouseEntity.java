@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @SuperBuilder
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class WarehouseEntity extends HopEntity{
 
 
-    @Column(name = "level", nullable = false)
+    @Column
+    @Min(0)
     private Integer level;
 
     @Column

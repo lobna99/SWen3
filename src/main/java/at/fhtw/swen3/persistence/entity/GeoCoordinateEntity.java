@@ -2,9 +2,7 @@ package at.fhtw.swen3.persistence.entity;
 
 
 import lombok.*;
-
-import org.locationtech.jts.geom.Geometry;
-
+import org.locationtech.jts.geom.Point;
 
 
 import javax.persistence.*;
@@ -28,5 +26,5 @@ public class GeoCoordinateEntity {
     @Column
     private Double lon;
 
-    //private Geometry point;
+    private Point point;
 }

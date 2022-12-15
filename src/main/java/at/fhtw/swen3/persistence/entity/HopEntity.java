@@ -8,6 +8,8 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @SuperBuilder
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @AllArgsConstructor
 @NoArgsConstructor

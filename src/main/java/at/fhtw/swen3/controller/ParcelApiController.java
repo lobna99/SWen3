@@ -22,6 +22,7 @@ public class ParcelApiController implements ParcelApi {
 
     @Autowired
     private final ParcelService parcelService;
+
     @Autowired
     public ParcelApiController(NativeWebRequest request, ParcelService parcelService) {
         this.request = request;
@@ -36,8 +37,20 @@ public class ParcelApiController implements ParcelApi {
     @Override
     public ResponseEntity<NewParcelInfo> submitParcel(Parcel parcel) {
 
-        parcelService.submitNewParcel(parcel);
-        
-        return new ResponseEntity<>(HttpStatus.OK);
+        NewParcelInfo newParcelInfo = new NewParcelInfo();
+
+        newParcelInfo.setTrackingId(parcelService.submitNewParcel(parcel, ""));
+
+
+        return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<NewParcelInfo> transitionParcel(String trackingId, Parcel parcel) {
+        NewParcelInfo newParcelInfo = new NewParcelInfo();
+
+        newParcelInfo.setTrackingId(parcelService.submitNewParcel(parcel, trackingId));
+
+        return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.OK);
     }
 }

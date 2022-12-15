@@ -38,4 +38,12 @@ public class WarehouseApiController implements WarehouseApi {
     public ResponseEntity<Warehouse> exportWarehouses() {
         return new ResponseEntity<Warehouse>(warehouseService.getWarehouse(), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Void> importWarehouses(Warehouse warehouse) {
+
+        warehouseService.importWarehouse(warehouse);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

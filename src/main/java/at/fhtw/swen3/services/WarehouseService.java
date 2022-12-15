@@ -6,4 +6,5 @@ import java.util.Collection;
 
 public interface WarehouseService {
     Warehouse getWarehouse();
+    void importWarehouse(Warehouse warehouse);
 }
