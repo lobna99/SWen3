@@ -106,7 +106,8 @@
         <dependency>
             <groupId>org.locationtech.jts.io</groupId>
             <artifactId>jts-io-common</artifactId>
-            <version>1.15.0</version>
+            <version>1.19.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- Bean Validation API support -->
