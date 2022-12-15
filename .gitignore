@@ -1,6 +1,6 @@
 # ignore target directory
-target/
-
+target
+.idea
 # ignore IntelliJ IDEA files
 .idea/
 *.iml

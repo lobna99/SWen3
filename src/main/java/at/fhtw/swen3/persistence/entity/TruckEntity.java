@@ -3,6 +3,7 @@ package at.fhtw.swen3.persistence.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.locationtech.jts.geom.Geometry;
 
 import javax.persistence.*;
 
@@ -17,8 +18,8 @@ public class TruckEntity extends HopEntity {
 
 
 
-    @Transient
-    private String regionGeoJson;
+    @Column
+    private Geometry regionGeoJson;
 
     @Column
     private String numberPlate;
