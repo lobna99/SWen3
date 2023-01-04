@@ -16,8 +16,8 @@ import java.time.OffsetDateTime;
 @Table(name = "t_hoparrival")
 public class HopArrivalEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
+    @Column
     private Long id;
 
     @Column

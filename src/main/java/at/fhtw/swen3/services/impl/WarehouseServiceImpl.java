@@ -1,16 +1,15 @@
 package at.fhtw.swen3.services.impl;
 
-import at.fhtw.swen3.persistence.entities.TransferWarehouseEntity;
+import at.fhtw.swen3.persistence.entities.TransferwarehouseEntity;
 import at.fhtw.swen3.persistence.entities.TruckEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.dto.Warehouse;
-import at.fhtw.swen3.services.mapper.WarehouseMapperConverter;
+import at.fhtw.swen3.services.mapper.WarehouseMapperImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +40,13 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public Warehouse getWarehouse() {
-/*        List<Warehouse> warehouseList = new ArrayList<>();
-        List<WarehouseEntity> warehouseEntities = warehouseRepository.findAll();
+        WarehouseEntity warehouseEntity = warehouseRepository.findByLevel(0);
         WarehouseMapperImpl warehouseMapper = new WarehouseMapperImpl();
 
-        for (WarehouseEntity warehouseEntity : warehouseEntities){
-            warehouseList.add(warehouseMapper.entityToDto(warehouseEntity));
-        }
 
-        return warehouseList.get(0);*/
-        return null;
+
+        return warehouseMapper.entityToDto(warehouseEntity);
+
     }
 
     @Override
@@ -61,17 +57,16 @@ public class WarehouseServiceImpl implements WarehouseService {
         truckRepository.deleteAll();
         geoCoordinateRepository.deleteAll();
 
-        WarehouseMapperConverter warehouseMapperConverter = new WarehouseMapperConverter();
+        WarehouseMapperImpl warehouseMapper = new WarehouseMapperImpl();
 
-
-        WarehouseEntity warehouseEntity = warehouseMapperConverter.convert(warehouse);
+        WarehouseEntity warehouseEntity = warehouseMapper.dtoToEntity(warehouse);
 
         //TODO: exception handling
         try {
-        warehouseEntity.getLocationCoordinates().setPoint((Point) new WKTReader().read("POINT ("+warehouseEntity.getLocationCoordinates().getLon()+" "+warehouseEntity.getLocationCoordinates().getLat()+")"));
+        saveAllHops(warehouseEntity.getNextHops());
         geoCoordinateRepository.save(warehouseEntity.getLocationCoordinates());
         warehouseRepository.save(warehouseEntity);
-        saveAllHops(warehouseEntity.getNextHops());
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -80,26 +75,26 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     private void saveAllHops(List<WarehouseNextHopsEntity> warehouseNextHopsEntity) throws ParseException {
 
-        for (WarehouseNextHopsEntity warehouseNextHops: warehouseNextHopsEntity){
 
-            switch (warehouseNextHops.getHop().getHopType()){
-                case "warehouse":
-                    warehouseNextHops.getHop().getLocationCoordinates().setPoint((Point) new WKTReader().read("POINT ("+warehouseNextHops.getHop().getLocationCoordinates().getLon()+" "+warehouseNextHops.getHop().getLocationCoordinates().getLat()+")"));
-                    geoCoordinateRepository.save(warehouseNextHops.getHop().getLocationCoordinates());
-                    warehouseRepository.save((WarehouseEntity) warehouseNextHops.getHop());
-                    saveAllHops(((WarehouseEntity) warehouseNextHops.getHop()).getNextHops());
-                    break;
-                case "truck":
-                    warehouseNextHops.getHop().getLocationCoordinates().setPoint((Point) new WKTReader().read("POINT ("+warehouseNextHops.getHop().getLocationCoordinates().getLon()+" "+warehouseNextHops.getHop().getLocationCoordinates().getLat()+")"));
-                    geoCoordinateRepository.save(warehouseNextHops.getHop().getLocationCoordinates());
-                    truckRepository.save((TruckEntity) warehouseNextHops.getHop());
-                    break;
-                case "transferwarehouse":
-                    warehouseNextHops.getHop().getLocationCoordinates().setPoint((Point) new WKTReader().read("POINT ("+warehouseNextHops.getHop().getLocationCoordinates().getLon()+" "+warehouseNextHops.getHop().getLocationCoordinates().getLat()+")"));
-                    geoCoordinateRepository.save(warehouseNextHops.getHop().getLocationCoordinates());
-                    transferwarehouseRepository.save((TransferWarehouseEntity) warehouseNextHops.getHop());
-                    break;
+        for (WarehouseNextHopsEntity warehouseNextHop: warehouseNextHopsEntity){
+            switch (warehouseNextHop.getHop().getHopType()) {
+                case "warehouse" -> {
+                    warehouseNextHop.getHop().getLocationCoordinates().setPoint(new WKTReader().read("POINT (" + warehouseNextHop.getHop().getLocationCoordinates().getLon() + " " + warehouseNextHop.getHop().getLocationCoordinates().getLat() + ")"));
+                    geoCoordinateRepository.save(warehouseNextHop.getHop().getLocationCoordinates());
+                    saveAllHops(((WarehouseEntity) warehouseNextHop.getHop()).getNextHops());
+                }
+                case "truck" -> {
+                    warehouseNextHop.getHop().getLocationCoordinates().setPoint(new WKTReader().read("POINT (" + warehouseNextHop.getHop().getLocationCoordinates().getLon() + " " + warehouseNextHop.getHop().getLocationCoordinates().getLat() + ")"));
+                    geoCoordinateRepository.save(warehouseNextHop.getHop().getLocationCoordinates());
+                    truckRepository.save((TruckEntity) warehouseNextHop.getHop());
+                }
+                case "transferwarehouse" -> {
+                    warehouseNextHop.getHop().getLocationCoordinates().setPoint(new WKTReader().read("POINT (" + warehouseNextHop.getHop().getLocationCoordinates().getLon() + " " + warehouseNextHop.getHop().getLocationCoordinates().getLat() + ")"));
+                    geoCoordinateRepository.save(warehouseNextHop.getHop().getLocationCoordinates());
+                    transferwarehouseRepository.save((TransferwarehouseEntity) warehouseNextHop.getHop());
+                }
             }
+            warehouseNextHopsRepository.save(warehouseNextHop);
 
         }
 

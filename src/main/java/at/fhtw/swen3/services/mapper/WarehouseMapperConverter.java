@@ -52,7 +52,7 @@ public class WarehouseMapperConverter {
                     warehouseNextHopsEntities.add(new WarehouseNextHopsEntity(null, hop.getTraveltimeMins(),truckEntity));
                     break;
                 case "transferwarehouse":
-                    TransferWarehouseEntity transferWarehouseEntity = transferwarehouseMapper.dtoToEntity((Transferwarehouse) hop.getHop());
+                    TransferwarehouseEntity transferWarehouseEntity = transferwarehouseMapper.dtoToEntity((Transferwarehouse) hop.getHop());
                     warehouseNextHopsEntities.add(new WarehouseNextHopsEntity(null, hop.getTraveltimeMins(),transferWarehouseEntity ));
                     break;
 

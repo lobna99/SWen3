@@ -3,6 +3,7 @@ package at.fhtw.swen3.services.impl;
 
 import at.fhtw.swen3.gps.service.impl.MapsEncodingProxy;
 import at.fhtw.swen3.model.Address;
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.persistence.repositories.GeoCoordinateRepository;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
@@ -53,10 +54,14 @@ public class ParcelServiceImpl implements ParcelService {
 
         parcelEntity.setTrackingId(id);
         parcelEntity.setState(TrackingInformation.StateEnum.PICKUP);
+        GeoCoordinateEntity geoCoordinateEntityR=mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getRecipient().getStreet(),parcelEntity.getRecipient().getPostalCode(),parcelEntity.getRecipient().getCity(),parcelEntity.getRecipient().getCountry()));
+        GeoCoordinateEntity geoCoordinateEntityS=mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getSender().getStreet(),parcelEntity.getSender().getPostalCode(),parcelEntity.getSender().getCity(),parcelEntity.getSender().getCountry()));
 
+        parcelEntity.getRecipient().setLocationCoordinates(geoCoordinateEntityR);
+        parcelEntity.getSender().setLocationCoordinates(geoCoordinateEntityS);
 
-        geoCoordinateRepository.save(mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getRecipient().getStreet(),parcelEntity.getRecipient().getPostalCode(),parcelEntity.getRecipient().getCity(),parcelEntity.getRecipient().getCountry())));
-        geoCoordinateRepository.save(mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getSender().getStreet(),parcelEntity.getSender().getPostalCode(),parcelEntity.getSender().getCity(),parcelEntity.getSender().getCountry())));
+        geoCoordinateRepository.save(geoCoordinateEntityR);
+        geoCoordinateRepository.save(geoCoordinateEntityS);
         recipientRepository.save(parcelEntity.getRecipient());
         recipientRepository.save(parcelEntity.getSender());
         parcelRepository.save(parcelEntity);

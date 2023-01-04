@@ -16,12 +16,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="openapi-spring" target="1.8" />
+      <module name="openapi-spring" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="openapi-spring" options="-parameters" />
+      <module name="openapi-spring" options="-parameters --add-modules java.base" />
     </option>
   </component>
 </project>

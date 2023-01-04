@@ -2,6 +2,7 @@ package at.fhtw.swen3.persistence.entities;
 
 
 import lombok.*;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
 
 
@@ -16,8 +17,8 @@ import javax.persistence.*;
 @Table(name = "t_geocoordinate")
 public class GeoCoordinateEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
+    @Column
     private Long id;
 
     @Column
@@ -27,5 +28,5 @@ public class GeoCoordinateEntity {
     private Double lon;
 
     @Column
-    private Point point;
+    private Geometry point;
 }

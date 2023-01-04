@@ -27,7 +27,7 @@ public class MapsEncodingProxy implements GeoEncodingService {
                 geoCoordinateEntity.setLat(Double.valueOf(obj.get("lat").textValue()));
                 geoCoordinateEntity.setLon(Double.valueOf(obj.get("lon").textValue()));
                 log.info("Geo coordinated have been found");
-                geoCoordinateEntity.setPoint((Point) wktToGeometry("POINT ("+geoCoordinateEntity.getLon()+" "+geoCoordinateEntity.getLat()+")"));
+                geoCoordinateEntity.setPoint(wktToGeometry("POINT ("+geoCoordinateEntity.getLon()+" "+geoCoordinateEntity.getLat()+")"));
                 return geoCoordinateEntity;
             }else{
                 log.info("no geo coordinates found");

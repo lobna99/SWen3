@@ -23,6 +23,6 @@ public class WarehouseEntity extends HopEntity{
     private Integer level;
 
     @Column
-    @OneToMany(mappedBy = "hop")
+    @OneToMany
     private List<WarehouseNextHopsEntity> nextHops;
 }

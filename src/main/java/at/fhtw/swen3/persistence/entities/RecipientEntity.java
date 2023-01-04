@@ -36,4 +36,7 @@ public class RecipientEntity {
 
     @Column
     private String country;
+
+    @OneToOne
+    private GeoCoordinateEntity locationCoordinates;
 }

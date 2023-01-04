@@ -12,9 +12,12 @@ import org.locationtech.jts.io.geojson.GeoJsonWriter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(uses = HopMapper.class)
 public interface TruckMapper {
+    TruckMapper INSTANCE = Mappers.getMapper(TruckMapper.class);
+
     @Mapping(target = "regionGeoJson",source = "regionGeoJson",qualifiedByName = "mapGeometryToString")
     Truck entityToDto(TruckEntity truckEntity);
     @Mapping(target = "regionGeoJson",source = "regionGeoJson",qualifiedByName = "mapStringToGeometry")

@@ -1,15 +1,19 @@
 package at.fhtw.swen3.services.mapper;
 
-import at.fhtw.swen3.persistence.entity.WarehouseNextHopsEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.WarehouseNextHopsEntityBuilder;
 import at.fhtw.swen3.services.dto.WarehouseNextHops;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
+import org.mapstruct.factory.Mappers;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-07T13:31:19+0100",
+    date = "2023-01-04T21:13:37+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
 )
 public class WarehouseNextHopsMapperImpl implements WarehouseNextHopsMapper {
+
+    private final HopMapper hopMapper = Mappers.getMapper( HopMapper.class );
 
     @Override
     public WarehouseNextHops entityToDto(WarehouseNextHopsEntity warehouseNextHopsEntity) {
@@ -18,6 +22,9 @@ public class WarehouseNextHopsMapperImpl implements WarehouseNextHopsMapper {
         }
 
         WarehouseNextHops warehouseNextHops = new WarehouseNextHops();
+
+        warehouseNextHops.setTraveltimeMins( warehouseNextHopsEntity.getTraveltimeMins() );
+        warehouseNextHops.setHop( hopMapper.entityToDto( warehouseNextHopsEntity.getHop() ) );
 
         return warehouseNextHops;
     }
@@ -28,8 +35,11 @@ public class WarehouseNextHopsMapperImpl implements WarehouseNextHopsMapper {
             return null;
         }
 
-        WarehouseNextHopsEntity warehouseNextHopsEntity = new WarehouseNextHopsEntity();
+        WarehouseNextHopsEntityBuilder warehouseNextHopsEntity = WarehouseNextHopsEntity.builder();
 
-        return warehouseNextHopsEntity;
+        warehouseNextHopsEntity.traveltimeMins( warehouseNextHops.getTraveltimeMins() );
+        warehouseNextHopsEntity.hop( hopMapper.dtoToEntity( warehouseNextHops.getHop() ) );
+
+        return warehouseNextHopsEntity.build();
     }
 }

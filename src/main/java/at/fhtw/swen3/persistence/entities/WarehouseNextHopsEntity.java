@@ -16,15 +16,16 @@ import javax.validation.constraints.NotNull;
 public class WarehouseNextHopsEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
+    @Column
     private Long id;
 
     @Column
     @NotNull
     private Integer traveltimeMins;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "hop_id")
     private HopEntity hop;
 
 }

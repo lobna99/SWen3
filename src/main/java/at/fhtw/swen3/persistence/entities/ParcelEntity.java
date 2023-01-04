@@ -22,7 +22,7 @@ public class ParcelEntity { //TODO: tests for every entity
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     @Column
     private Long id;
 
