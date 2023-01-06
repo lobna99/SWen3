@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GeoCoordinateRepository extends JpaRepository<GeoCoordinateEntity, Long> {
+
+    @Override
+    void deleteAll();
 }

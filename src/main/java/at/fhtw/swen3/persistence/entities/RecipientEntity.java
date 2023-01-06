@@ -37,6 +37,6 @@ public class RecipientEntity {
     @Column
     private String country;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.REMOVE)
     private GeoCoordinateEntity locationCoordinates;
 }

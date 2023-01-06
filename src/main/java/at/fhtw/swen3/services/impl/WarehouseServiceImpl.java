@@ -43,8 +43,6 @@ public class WarehouseServiceImpl implements WarehouseService {
         WarehouseEntity warehouseEntity = warehouseRepository.findByLevel(0);
         WarehouseMapperImpl warehouseMapper = new WarehouseMapperImpl();
 
-
-
         return warehouseMapper.entityToDto(warehouseEntity);
 
     }
@@ -55,7 +53,6 @@ public class WarehouseServiceImpl implements WarehouseService {
         warehouseRepository.deleteAll();
         transferwarehouseRepository.deleteAll();
         truckRepository.deleteAll();
-        geoCoordinateRepository.deleteAll();
 
         WarehouseMapperImpl warehouseMapper = new WarehouseMapperImpl();
 
