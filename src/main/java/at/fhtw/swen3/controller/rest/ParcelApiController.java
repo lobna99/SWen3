@@ -5,6 +5,7 @@ import at.fhtw.swen3.controller.rest.ParcelApi;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
+import at.fhtw.swen3.services.dto.TrackingInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +53,24 @@ public class ParcelApiController implements ParcelApi {
         newParcelInfo.setTrackingId(parcelService.submitNewParcel(parcel, trackingId));
 
         return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<TrackingInformation> trackParcel(String trackingId) {
+
+        return new ResponseEntity<TrackingInformation>(parcelService.getParcel(trackingId),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Void> reportParcelHop(String trackingId, String code) {
+        parcelService.reportParcel(trackingId,code);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Void> reportParcelDelivery(String trackingId) {
+        parcelService.reportDelivery(trackingId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

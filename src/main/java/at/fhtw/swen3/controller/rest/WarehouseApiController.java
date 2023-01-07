@@ -1,8 +1,9 @@
 package at.fhtw.swen3.controller.rest;
 
 
-import at.fhtw.swen3.controller.rest.WarehouseApi;
+import at.fhtw.swen3.services.HopService;
 import at.fhtw.swen3.services.WarehouseService;
+import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Warehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,13 @@ public class WarehouseApiController implements WarehouseApi {
     private final WarehouseService warehouseService;
 
     @Autowired
-    public WarehouseApiController(NativeWebRequest request, WarehouseService warehouseService) {
+    private final HopService hopService;
+
+    @Autowired
+    public WarehouseApiController(NativeWebRequest request, WarehouseService warehouseService, HopService hopService) {
         this.request = request;
         this.warehouseService = warehouseService;
+        this.hopService = hopService;
     }
 
     @Override
@@ -45,5 +50,11 @@ public class WarehouseApiController implements WarehouseApi {
         warehouseService.importWarehouse(warehouse);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Hop> getWarehouse(String code) {
+
+        return new ResponseEntity<Hop>( hopService.getHop(code),HttpStatus.OK);
     }
 }

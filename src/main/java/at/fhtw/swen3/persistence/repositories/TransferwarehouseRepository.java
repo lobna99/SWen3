@@ -11,7 +11,14 @@ import java.util.List;
 @Repository
 public interface TransferwarehouseRepository extends JpaRepository<TransferwarehouseEntity, Long> {
 
-    @Query(value= "SELECT * FROM transferwarehouse_entity WHERE ST_DWithin((SELECT point from t_geocoordinate where id = location_coordinates_id), ST_GeomFromWKB((SELECT point from t_geocoordinate where id = (SELECT t_recipient.location_coordinates_id from t_recipient where t_recipient.id = :recipient))),0.1) ORDER BY ST_Distance((SELECT point from t_geocoordinate where id = location_coordinates_id), ST_GeomFromWKB((SELECT point from t_geocoordinate where id = (SELECT t_recipient.location_coordinates_id from t_recipient where t_recipient.id = :recipient))));", nativeQuery = true)
+
+    TransferwarehouseEntity findByCode(String code);
+
+
+    @Query(value= "SELECT * FROM transferwarehouse_entity WHERE ST_DWithin((SELECT point from t_geocoordinate where id = transferwarehouse_entity.fk_coordinates), ST_GeomFromWKB((SELECT point from t_geocoordinate where id = (SELECT t_recipient.location_coordinates_id from t_recipient where t_recipient.id = :recipient))),1) ORDER BY ST_Distance((SELECT point from t_geocoordinate where id = transferwarehouse_entity.fk_coordinates), ST_GeomFromWKB((SELECT point from t_geocoordinate where id = (SELECT t_recipient.location_coordinates_id from t_recipient where t_recipient.id = :recipient))));", nativeQuery = true)
     List<TransferwarehouseEntity> getClosestHop(long recipient);
+
+    @Query(value ="SELECT ST_Distance((SELECT point from t_geocoordinate where id =:id), ST_GeomFromWKB((SELECT point from t_geocoordinate where id = (SELECT t_recipient.location_coordinates_id from t_recipient where t_recipient.id = :recipient))));", nativeQuery = true)
+    Double getDistance(long id,long recipient);
 
 }

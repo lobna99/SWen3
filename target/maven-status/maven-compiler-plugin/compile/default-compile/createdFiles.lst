@@ -44,6 +44,7 @@ at\fhtw\swen3\persistence\entities\WarehouseNextHopsEntity$WarehouseNextHopsEnti
 at\fhtw\swen3\services\dto\HopArrival.class
 at\fhtw\swen3\services\mapper\HopMapperImpl_.class
 at\fhtw\swen3\persistence\entities\WarehouseEntity$WarehouseEntityBuilder.class
+at\fhtw\swen3\services\impl\HopServiceImpl.class
 at\fhtw\swen3\persistence\repositories\TruckRepository.class
 at\fhtw\swen3\model\Address$AddressBuilder.class
 at\fhtw\swen3\persistence\entities\TruckEntity$TruckEntityBuilderImpl.class
@@ -87,5 +88,6 @@ at\fhtw\swen3\services\mapper\HopMapper.class
 at\fhtw\swen3\services\mapper\TruckMapper.class
 at\fhtw\swen3\services\dto\Hop.class
 at\fhtw\swen3\services\dto\TrackingInformation.class
+at\fhtw\swen3\services\HopService.class
 at\fhtw\swen3\persistence\entities\TransferwarehouseEntity.class
 at\fhtw\swen3\gps\HttpRequest.class

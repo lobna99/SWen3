@@ -16,4 +16,5 @@ public interface WarehouseRepository extends JpaRepository<WarehouseEntity,Long>
 
     WarehouseEntity findByLevel(int level);
 
+    WarehouseEntity findByCode(String code);
 }

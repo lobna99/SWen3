@@ -22,7 +22,7 @@ public class WarehouseEntity extends HopEntity{
     @Min(0)
     private Integer level;
 
-    @Column
+    @JoinColumn(name="fk_nextHops")
     @OneToMany(cascade = CascadeType.REMOVE)
     private List<WarehouseNextHopsEntity> nextHops;
 }

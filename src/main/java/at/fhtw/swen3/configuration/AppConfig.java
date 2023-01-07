@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
     @Bean
-    public ParcelServiceImpl parcelService(ParcelRepository parcelRepository, RecipientRepository recipientRepository, GeoCoordinateRepository geoCoordinateRepository, WarehouseRepository warehouseRepository, TruckRepository truckRepository,TransferwarehouseRepository transferwarehouseRepository) {
-        return new ParcelServiceImpl(parcelRepository,recipientRepository,geoCoordinateRepository,warehouseRepository,truckRepository,transferwarehouseRepository);
+    public ParcelServiceImpl parcelService(ParcelRepository parcelRepository, RecipientRepository recipientRepository, GeoCoordinateRepository geoCoordinateRepository, WarehouseRepository warehouseRepository, TruckRepository truckRepository,TransferwarehouseRepository transferwarehouseRepository,HopArrivalRepository hopArrivalRepository) {
+        return new ParcelServiceImpl(parcelRepository,recipientRepository,geoCoordinateRepository,warehouseRepository,truckRepository,hopArrivalRepository,transferwarehouseRepository);
     }
 
 }

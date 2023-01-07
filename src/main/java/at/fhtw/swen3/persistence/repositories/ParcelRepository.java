@@ -15,4 +15,6 @@ public interface ParcelRepository extends JpaRepository<ParcelEntity,Long> {
 
     @Override
     List<ParcelEntity> findAll();
+
+    ParcelEntity findByTrackingId(String trackingId);
 }

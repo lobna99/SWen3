@@ -45,11 +45,9 @@ public class ParcelEntity { //TODO: tests for every entity
     @Column
     private StateEnum state;
 
-    @Column
     @OneToMany
     private List<HopArrivalEntity> visitedHops;
 
-    @Column
     @OneToMany
     private List<HopArrivalEntity> futureHops;
 }

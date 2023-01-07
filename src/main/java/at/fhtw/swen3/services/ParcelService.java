@@ -2,14 +2,14 @@ package at.fhtw.swen3.services;
 
 
 import at.fhtw.swen3.services.dto.Parcel;
-
-import java.util.Collection;
-
+import at.fhtw.swen3.services.dto.TrackingInformation;
 
 
 public interface ParcelService {
 
    String submitNewParcel(Parcel parcel,String id);
-   Collection<Parcel> getStorage();
+   TrackingInformation getParcel(String tracking_id);
+   void reportParcel(String tracking, String code);
+   void reportDelivery(String tracking);
 
 }    
