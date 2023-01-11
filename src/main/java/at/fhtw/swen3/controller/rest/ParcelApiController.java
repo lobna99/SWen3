@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;
 
+import java.io.IOException;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -19,6 +20,7 @@ import javax.annotation.Generated;
 @Controller
 public class ParcelApiController implements ParcelApi {
 
+    //TODO: error handling
     private final NativeWebRequest request;
 
     @Autowired
@@ -63,9 +65,13 @@ public class ParcelApiController implements ParcelApi {
 
     @Override
     public ResponseEntity<Void> reportParcelHop(String trackingId, String code) {
-        parcelService.reportParcel(trackingId,code);
+        try {//TODO: exception handling
+            parcelService.reportParcel(trackingId,code);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IOException e) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
 
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override

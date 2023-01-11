@@ -8,6 +8,4 @@ import java.util.List;
 
 public abstract class AbstractMapper<S, T> implements Mapper<S, T>{
 
-
-
 }

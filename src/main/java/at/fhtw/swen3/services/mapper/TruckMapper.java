@@ -29,7 +29,7 @@ public interface TruckMapper {
 
         String geo = jsonObject.getAsJsonObject("geometry").toString();
 
-// Create a new Point GeoJson string using the geometry object
+        // Create a new Point GeoJson string using the geometry object
         return new GeoJsonReader().read(geo);
     }
 
