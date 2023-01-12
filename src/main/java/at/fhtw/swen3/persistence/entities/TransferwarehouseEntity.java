@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -21,8 +22,10 @@ public class TransferwarehouseEntity extends HopEntity {
     private Geometry regionGeoJson;
 
     @Column
+    @NotBlank
     private String logisticsPartner;
 
     @Column
+    @NotBlank
     private String logisticsPartnerUrl;
 }

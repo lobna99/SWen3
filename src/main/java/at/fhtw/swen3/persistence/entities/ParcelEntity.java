@@ -29,6 +29,7 @@ public class ParcelEntity { //TODO: tests for every entity
     @Column
     @NotNull
     private String trackingId;
+
     @Column
     @Size(message = "weight must be over 0")
     @DecimalMin("0.0")
@@ -38,10 +39,12 @@ public class ParcelEntity { //TODO: tests for every entity
     @ManyToOne
     @JoinColumn(name = "fk_recipient")
     private RecipientEntity recipient;
+
     @NotNull(message = "Sender cannot be null")
     @ManyToOne
     @JoinColumn(name = "fk_sender")
     private RecipientEntity sender;
+
     @Column
     private StateEnum state;
 

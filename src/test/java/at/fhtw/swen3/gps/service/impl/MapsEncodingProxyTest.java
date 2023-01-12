@@ -1,7 +1,6 @@
 package at.fhtw.swen3.gps.service.impl;
 
 import at.fhtw.swen3.model.Address;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

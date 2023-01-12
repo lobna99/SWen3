@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +23,7 @@ public class TruckEntity extends HopEntity {
     private Geometry regionGeoJson;
 
     @Column
+    @NotBlank
     private String numberPlate;
 
 }

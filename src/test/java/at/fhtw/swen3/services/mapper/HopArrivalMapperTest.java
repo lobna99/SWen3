@@ -1,9 +1,16 @@
 package at.fhtw.swen3.services.mapper;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
+import at.fhtw.swen3.services.dto.HopArrival;
+import org.junit.jupiter.api.Test;
+
+import java.time.OffsetDateTime;
 
 public class HopArrivalMapperTest {
 
-  /*  @Test
+   @Test
     void entityToDtoTest() {
         HopArrivalEntity hopArrivalEntity = new HopArrivalEntity();
         hopArrivalEntity.setCode("HJTH8G6OI");
@@ -31,6 +38,6 @@ public class HopArrivalMapperTest {
         assertEquals(hopArrival.getCode(), hopArrivalEntity.getCode());
         assertEquals(hopArrival.getDescription(), hopArrivalEntity.getDescription());
         assertEquals(hopArrival.getDateTime(), hopArrivalEntity.getDateTime());
-    }*/
+    }
 
 }

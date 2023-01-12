@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -20,6 +21,7 @@ public class HopEntity {
     private Long id;
 
     @Column
+    @NotBlank
     private String hopType;
 
     @Column
@@ -33,6 +35,7 @@ public class HopEntity {
     private Integer processingDelayMins;
 
     @Column
+    @NotBlank
     private String locationName;
 
 
