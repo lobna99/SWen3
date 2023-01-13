@@ -32,7 +32,6 @@ public class Warehouse extends Hop {
 
   public Warehouse level(Integer level) {
     this.level = level;
-    log.info("level set");
     return this;
   }
 
@@ -48,18 +47,15 @@ public class Warehouse extends Hop {
 
   public void setLevel(Integer level) {
     this.level = level;
-    log.info("level reset");
   }
 
   public Warehouse nextHops(List<WarehouseNextHops> nextHops) {
     this.nextHops = nextHops;
-    log.info("nextHops set");
     return this;
   }
 
   public Warehouse addNextHopsItem(WarehouseNextHops nextHopsItem) {
     this.nextHops.add(nextHopsItem);
-    log.info("nextHopsItem added");
     return this;
   }
 

@@ -33,7 +33,6 @@ public class Parcel {
 
   public Parcel weight(Float weight) {
     this.weight = weight;
-    log.info("weight set");
     return this;
   }
 
@@ -49,12 +48,10 @@ public class Parcel {
 
   public void setWeight(Float weight) {
     this.weight = weight;
-    log.info("weight reset");
   }
 
   public Parcel recipient(Recipient recipient) {
     this.recipient = recipient;
-    log.info("recipient set");
     return this;
   }
 
@@ -70,12 +67,10 @@ public class Parcel {
 
   public void setRecipient(Recipient recipient) {
     this.recipient = recipient;
-    log.info("recipient reset");
   }
 
   public Parcel sender(Recipient sender) {
     this.sender = sender;
-    log.info("sender set");
     return this;
   }
 
@@ -91,7 +86,6 @@ public class Parcel {
 
   public void setSender(Recipient sender) {
     this.sender = sender;
-    log.info("sender reset");
   }
 
   @Override

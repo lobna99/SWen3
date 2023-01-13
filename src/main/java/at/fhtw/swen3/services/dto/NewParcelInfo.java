@@ -25,7 +25,6 @@ public class NewParcelInfo {
 
   public NewParcelInfo trackingId(String trackingId) {
     this.trackingId = trackingId;
-    log.info("tracking id set");
     return this;
   }
 
@@ -41,7 +40,6 @@ public class NewParcelInfo {
 
   public void setTrackingId(String trackingId) {
     this.trackingId = trackingId;
-    log.info("trackeing id set");
   }
 
   @Override

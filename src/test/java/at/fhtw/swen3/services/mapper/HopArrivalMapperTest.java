@@ -17,8 +17,8 @@ public class HopArrivalMapperTest {
         hopArrivalEntity.setDescription("Warehouse 50-1");
         hopArrivalEntity.setDateTime(OffsetDateTime.now());
 
-        HopArrivalMapperImpl hopArrivalMapper = new HopArrivalMapperImpl();
-        HopArrival hopArrival = hopArrivalMapper.entityToDto(hopArrivalEntity);
+        // Convert the entity to a DTO
+        HopArrival hopArrival = HopArrivalMapper.INSTANCE.entityToDto(hopArrivalEntity);
 
         assertEquals(hopArrivalEntity.getCode(), hopArrival.getCode());
         assertEquals(hopArrivalEntity.getDescription(), hopArrival.getDescription());
@@ -32,8 +32,9 @@ public class HopArrivalMapperTest {
         hopArrival.setDescription("Warehouse 50-1");
         hopArrival.setDateTime(OffsetDateTime.now());
 
-        HopArrivalMapperImpl hopArrivalMapper = new HopArrivalMapperImpl();
-        HopArrivalEntity hopArrivalEntity = hopArrivalMapper.dtoToEntity(hopArrival);
+        // Convert the DTO to an entity
+        HopArrivalEntity hopArrivalEntity = HopArrivalMapper.INSTANCE.dtoToEntity(hopArrival);
+
 
         assertEquals(hopArrival.getCode(), hopArrivalEntity.getCode());
         assertEquals(hopArrival.getDescription(), hopArrivalEntity.getDescription());

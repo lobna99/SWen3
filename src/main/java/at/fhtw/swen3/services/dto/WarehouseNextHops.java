@@ -30,7 +30,6 @@ public class WarehouseNextHops {
 
   public WarehouseNextHops traveltimeMins(Integer traveltimeMins) {
     this.traveltimeMins = traveltimeMins;
-    log.info("travelTimeMins set");
     return this;
   }
 
@@ -46,12 +45,10 @@ public class WarehouseNextHops {
 
   public void setTraveltimeMins(Integer traveltimeMins) {
     this.traveltimeMins = traveltimeMins;
-    log.info("travelTimeMins reset");
   }
 
   public WarehouseNextHops hop(Hop hop) {
     this.hop = hop;
-    log.info("hop set");
     return this;
   }
 
@@ -67,7 +64,6 @@ public class WarehouseNextHops {
 
   public void setHop(Hop hop) {
     this.hop = hop;
-    log.info("hop reset");
   }
 
   @Override

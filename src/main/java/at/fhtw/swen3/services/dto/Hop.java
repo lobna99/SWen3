@@ -56,7 +56,6 @@ public class Hop {
 
   public Hop hopType(String hopType) {
     this.hopType = hopType;
-    log.info("hop type set");
     return this;
   }
 
@@ -72,12 +71,10 @@ public class Hop {
 
   public void setHopType(String hopType) {
     this.hopType = hopType;
-    log.info("hop type reset");
   }
 
   public Hop code(String code) {
     this.code = code;
-    log.info("hop code set");
     return this;
   }
 
@@ -93,12 +90,10 @@ public class Hop {
 
   public void setCode(String code) {
     this.code = code;
-    log.info("hop code reset");
   }
 
   public Hop description(String description) {
     this.description = description;
-    log.info("hop decription set");
     return this;
   }
 
@@ -114,7 +109,6 @@ public class Hop {
 
   public void setDescription(String description) {
     this.description = description;
-    log.info("hop description reset");
   }
 
   public Hop processingDelayMins(Integer processingDelayMins) {
@@ -138,7 +132,6 @@ public class Hop {
 
   public Hop locationName(String locationName) {
     this.locationName = locationName;
-    log.info("locationname set");
     return this;
   }
 
@@ -154,12 +147,10 @@ public class Hop {
 
   public void setLocationName(String locationName) {
     this.locationName = locationName;
-    log.info("locationname reset");
   }
 
   public Hop locationCoordinates(GeoCoordinate locationCoordinates) {
     this.locationCoordinates = locationCoordinates;
-    log.info("coordinates set");
     return this;
   }
 
@@ -175,7 +166,6 @@ public class Hop {
 
   public void setLocationCoordinates(GeoCoordinate locationCoordinates) {
     this.locationCoordinates = locationCoordinates;
-    log.info("coordinated reset");
   }
 
   @Override

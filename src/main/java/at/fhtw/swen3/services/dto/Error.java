@@ -13,6 +13,7 @@ import javax.annotation.Generated;
 /**
  * Error
  */
+//todo: logger in allen dto überarbeiten
 
 @JsonTypeName("error")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-19T12:44:39.831116Z[Etc/UTC]")

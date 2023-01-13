@@ -79,7 +79,6 @@ public class TrackingInformation {
 
   public TrackingInformation state(StateEnum state) {
     this.state = state;
-    log.info("tracking state set");
     return this;
   }
 
@@ -95,18 +94,15 @@ public class TrackingInformation {
 
   public void setState(StateEnum state) {
     this.state = state;
-    log.info("tracking state reset");
   }
 
   public TrackingInformation visitedHops(List<HopArrival> visitedHops) {
     this.visitedHops = visitedHops;
-    log.info("visited hops set");
     return this;
   }
 
   public TrackingInformation addVisitedHopsItem(HopArrival visitedHopsItem) {
     this.visitedHops.add(visitedHopsItem);
-    log.info("visited hops item added");
     return this;
   }
 
@@ -126,13 +122,11 @@ public class TrackingInformation {
 
   public TrackingInformation futureHops(List<HopArrival> futureHops) {
     this.futureHops = futureHops;
-    log.info("future hops set");
     return this;
   }
 
   public TrackingInformation addFutureHopsItem(HopArrival futureHopsItem) {
     this.futureHops.add(futureHopsItem);
-    log.info("future hops item added");
     return this;
   }
 

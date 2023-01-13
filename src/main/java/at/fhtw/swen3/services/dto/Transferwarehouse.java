@@ -32,7 +32,6 @@ public class Transferwarehouse extends Hop {
 
   public Transferwarehouse regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
-    log.info("regionGeoJson set");
     return this;
   }
 
@@ -48,12 +47,10 @@ public class Transferwarehouse extends Hop {
 
   public void setRegionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;
-    log.info("regionGeoJson reset");
   }
 
   public Transferwarehouse logisticsPartner(String logisticsPartner) {
     this.logisticsPartner = logisticsPartner;
-    log.info("logistics partner set");
     return this;
   }
 
@@ -69,12 +66,10 @@ public class Transferwarehouse extends Hop {
 
   public void setLogisticsPartner(String logisticsPartner) {
     this.logisticsPartner = logisticsPartner;
-    log.info("logistics partner reset");
   }
 
   public Transferwarehouse logisticsPartnerUrl(String logisticsPartnerUrl) {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
-    log.info("logistics partner url set");
     return this;
   }
 
@@ -90,7 +85,6 @@ public class Transferwarehouse extends Hop {
 
   public void setLogisticsPartnerUrl(String logisticsPartnerUrl) {
     this.logisticsPartnerUrl = logisticsPartnerUrl;
-    log.info("logistics patner url reset");
   }
 
   public Transferwarehouse hopType(String hopType) {
