@@ -54,7 +54,17 @@
     </build>
 
     <dependencies>
+      
 
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-spring</artifactId>
+            <version>1.22.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -196,7 +206,11 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!-- add repositories for JTS and Hibernate Spatial and Hibernate (JBoss) -->

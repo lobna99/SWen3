@@ -7,8 +7,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-12T23:19:51+0100",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
+    date = "2023-01-15T22:47:17+0100",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
 )
 public class RecipientMapperImpl implements RecipientMapper {
 

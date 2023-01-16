@@ -8,6 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class ParcelEntity { //TODO: tests for every entity
     private Long id;
 
     @Column
-    @NotNull
+    @NotNull @Pattern(regexp="^[A-Z0-9]{9}$")
     private String trackingId;
 
     @Column

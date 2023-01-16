@@ -15,6 +15,7 @@ import at.fhtw.swen3.services.mapper.ParcelMapperImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -32,13 +33,13 @@ import java.util.UUID;
 @Slf4j
 public class ParcelServiceImpl implements ParcelService {
 
+
     @Autowired
     private final ParcelRepository parcelRepository;
 
     @Autowired
     private final RecipientRepository recipientRepository;
 
-    private final ParcelMapperImpl parcelMapper = new ParcelMapperImpl();
     @Autowired
     private final GeoCoordinateRepository geoCoordinateRepository;
     @Autowired
@@ -49,14 +50,13 @@ public class ParcelServiceImpl implements ParcelService {
     private final HopArrivalRepository hopArrivalRepository;
     @Autowired
     private final TransferwarehouseRepository transferwarehouseRepository;
-
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public String submitNewParcel(Parcel parcel, String id) {
-
-        UUID uuid = UUID.randomUUID();
-
         MapsEncodingProxy mapsEncodingProxy = new MapsEncodingProxy();
+        ParcelMapperImpl parcelMapper = new ParcelMapperImpl();
 
         if (id.equals("")) id = UUID.randomUUID().toString().replace("-", "").toUpperCase().substring(0, 9);
 
@@ -75,7 +75,7 @@ public class ParcelServiceImpl implements ParcelService {
         Long recp_id = recipientRepository.save(parcelEntity.getRecipient()).getId();
         Long send_id = recipientRepository.save(parcelEntity.getSender()).getId();
         List<TruckEntity> truck = truckRepository.getClosestHop(recp_id);
-        List<TransferwarehouseEntity> transferwarehouseEntity = transferwarehouseRepository.getClosestHop(recp_id);//TODO: check whats closer
+        List<TransferwarehouseEntity> transferwarehouseEntity = transferwarehouseRepository.getClosestHop(recp_id);
         List<TruckEntity> s_truck = truckRepository.getClosestHop(send_id);
         List<TransferwarehouseEntity> s_transferwarehouseEntity = transferwarehouseRepository.getClosestHop(send_id);
         HopEntity closestR = new HopEntity();
@@ -101,6 +101,7 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     private HopEntity closerHop(HopEntity hopA,HopEntity hopB, long id){
+        //testme
         Double distRTruck = truckRepository.getDistance(hopA.getLocationCoordinates().getId(), id);
         Double distRTrans = transferwarehouseRepository.getDistance(hopB.getLocationCoordinates().getId(), id);
         if (distRTruck < distRTrans) {
@@ -111,7 +112,7 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     private List<HopEntity> calculateRoute(HopEntity aParent, HopEntity bParent) {
-
+        //testme
         WarehouseEntity warehouseEntity = warehouseRepository.findByLevel(0);
 
         WarehouseNextHopsEntity aParentNextHop = getParentNextHops(aParent, warehouseEntity);
@@ -219,9 +220,12 @@ public class ParcelServiceImpl implements ParcelService {
                 parcelEntity.getFutureHops().remove(hopArrival);
                 parcelEntity.getVisitedHops().add(hopArrival);
                 switch (hopArrival.getDescription().split(" ")[0]) {
-                    case "Warehouse" -> parcelEntity.setState(TrackingInformation.StateEnum.INTRANSPORT);
+                    case "Warehouse" -> {
+                        parcelEntity.setState(TrackingInformation.StateEnum.INTRANSPORT);
+
+                    }
                     case "Truck" -> parcelEntity.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
-                    case "Transferwarehouse" -> {// TODO: partner url call
+                    case "Transferwarehouse" -> {
                         TransferwarehouseEntity transferwarehouse = transferwarehouseRepository.findByCode(hopArrival.getCode());
                         URL url = new URL(transferwarehouse.getLogisticsPartnerUrl() + "/parcel/" + parcelEntity.getTrackingId());
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -239,6 +243,8 @@ public class ParcelServiceImpl implements ParcelService {
     @Override
     public void reportDelivery(String tracking) {
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(tracking);
+        parcelEntity.getVisitedHops().addAll(parcelEntity.getFutureHops());
+        parcelEntity.getFutureHops().clear();
 
         parcelEntity.setState(TrackingInformation.StateEnum.DELIVERED);
         parcelRepository.save(parcelEntity);

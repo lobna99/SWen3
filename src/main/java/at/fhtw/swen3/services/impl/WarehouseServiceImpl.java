@@ -55,7 +55,6 @@ public class WarehouseServiceImpl implements WarehouseService {
         truckRepository.deleteAll();
 
         WarehouseMapperImpl warehouseMapper = new WarehouseMapperImpl();
-
         WarehouseEntity warehouseEntity = warehouseMapper.dtoToEntity(warehouse);
 
         //TODO: exception handling
@@ -96,8 +95,6 @@ public class WarehouseServiceImpl implements WarehouseService {
         }
 
     }
-
-
 
 
  }

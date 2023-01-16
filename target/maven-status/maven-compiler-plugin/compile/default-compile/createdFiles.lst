@@ -25,6 +25,8 @@ at\fhtw\swen3\persistence\entities\HopArrivalEntity$HopArrivalEntityBuilder.clas
 at\fhtw\swen3\gps\service\GeoEncodingService.class
 at\fhtw\swen3\persistence\entities\TransferwarehouseEntity$TransferwarehouseEntityBuilderImpl.class
 at\fhtw\swen3\services\dto\Transferwarehouse.class
+at\fhtw\swen3\configuration\KafkaConsumerConfig.class
+at\fhtw\swen3\configuration\KafkaTopicConfig.class
 at\fhtw\swen3\persistence\entities\HopArrivalEntity.class
 at\fhtw\swen3\services\mapper\RecipientMapper.class
 at\fhtw\swen3\persistence\entities\WarehouseEntity.class
@@ -33,6 +35,8 @@ at\fhtw\swen3\persistence\repositories\ErrorRepository.class
 at\fhtw\swen3\persistence\repositories\GeoCoordinateRepository.class
 at\fhtw\swen3\services\dto\WarehouseNextHops.class
 at\fhtw\swen3\services\dto\Parcel.class
+at\fhtw\swen3\configuration\KafkaProducerConfig.class
+at\fhtw\swen3\OpenApiGeneratorApplication$1.class
 at\fhtw\swen3\services\mapper\ParcelMapper.class
 at\fhtw\swen3\services\dto\Recipient.class
 at\fhtw\swen3\services\mapper\HopMapper.class
@@ -82,6 +86,7 @@ at\fhtw\swen3\services\mapper\WarehouseMapper.class
 at\fhtw\swen3\controller\rest\ParcelApi.class
 at\fhtw\swen3\services\ParcelService.class
 at\fhtw\swen3\persistence\entities\ErrorEntity$ErrorEntityBuilder.class
+at\fhtw\swen3\notification\consumer\KafkaConsumer.class
 at\fhtw\swen3\persistence\entities\WarehouseNextHopsEntity.class
 at\fhtw\swen3\persistence\entities\GeoCoordinateEntity.class
 at\fhtw\swen3\persistence\entities\RecipientEntity$RecipientEntityBuilder.class
