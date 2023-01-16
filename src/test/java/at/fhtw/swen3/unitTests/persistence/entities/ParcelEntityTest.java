@@ -1,4 +1,6 @@
-package at.fhtw.swen3.persistence.entities;
+package at.fhtw.swen3.unitTests.persistence.entities;
+import at.fhtw.swen3.persistence.entities.ParcelEntity;
+import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolationException;

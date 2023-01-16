@@ -1,9 +1,10 @@
-package at.fhtw.swen3.services.mapper;
+package at.fhtw.swen3.unitTests.services.mapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.services.dto.HopArrival;
+import at.fhtw.swen3.services.mapper.HopArrivalMapper;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;

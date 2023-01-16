@@ -1,5 +1,6 @@
-package at.fhtw.swen3.persistence.entities;
+package at.fhtw.swen3.unitTests.persistence.entities;
 
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
