@@ -1,5 +1,6 @@
-package at.fhtw.swen3.gps.service.impl;
+package at.fhtw.swen3.unitTests.service.impl;
 
+import at.fhtw.swen3.gps.service.impl.MapsEncodingProxy;
 import at.fhtw.swen3.model.Address;
 import org.junit.jupiter.api.Test;
 

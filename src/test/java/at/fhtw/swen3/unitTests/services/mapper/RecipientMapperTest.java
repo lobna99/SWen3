@@ -1,7 +1,8 @@
-package at.fhtw.swen3.services.mapper;
+package at.fhtw.swen3.unitTests.services.mapper;
 
 import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import at.fhtw.swen3.services.dto.Recipient;
+import at.fhtw.swen3.services.mapper.RecipientMapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

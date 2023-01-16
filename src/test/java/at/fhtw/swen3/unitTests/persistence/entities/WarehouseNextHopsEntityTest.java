@@ -1,7 +1,9 @@
-package at.fhtw.swen3.persistence.entities;
+package at.fhtw.swen3.unitTests.persistence.entities;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import at.fhtw.swen3.persistence.entities.HopEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import org.junit.Test;
 
 public class WarehouseNextHopsEntityTest {
