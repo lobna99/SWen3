@@ -212,31 +212,33 @@ public class ParcelServiceImpl implements ParcelService {
     public PushNotif reportParcel(String tracking, String code) throws IOException {
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(tracking);
         HopArrivalEntity arrival = null;
-
-        for (HopArrivalEntity hopArrival : parcelEntity.getFutureHops()){
-            if(hopArrival.getCode().equals(code)){
-                parcelEntity.getFutureHops().remove(hopArrival);
-                parcelEntity.getVisitedHops().add(hopArrival);
-                arrival=  hopArrival;
-                switch (hopArrival.getDescription().split(" ")[0]) {
-                    case "Warehouse" -> {
-                        parcelEntity.setState(TrackingInformation.StateEnum.INTRANSPORT);
-                    }
-                    case "Truck" -> parcelEntity.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
-                    case "Transferwarehouse" -> {
-                        TransferwarehouseEntity transferwarehouse = transferwarehouseRepository.findByCode(hopArrival.getCode());
-                        URL url = new URL(transferwarehouse.getLogisticsPartnerUrl() + "/parcel/" + parcelEntity.getTrackingId());
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setRequestMethod("POST");
-                        conn.setDoOutput(true);
-                        parcelEntity.setState(TrackingInformation.StateEnum.TRANSFERRED);
-                    }
+if(parcelEntity!=null) {
+    for (HopArrivalEntity hopArrival : parcelEntity.getFutureHops()) {
+        if (hopArrival.getCode().equals(code)) {
+            parcelEntity.getFutureHops().remove(hopArrival);
+            parcelEntity.getVisitedHops().add(hopArrival);
+            arrival = hopArrival;
+            switch (hopArrival.getDescription().split(" ")[0]) {
+                case "Warehouse" -> {
+                    parcelEntity.setState(TrackingInformation.StateEnum.INTRANSPORT);
                 }
-             break;
+                case "Truck" -> parcelEntity.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
+                case "Transferwarehouse" -> {
+                    TransferwarehouseEntity transferwarehouse = transferwarehouseRepository.findByCode(hopArrival.getCode());
+                    URL url = new URL(transferwarehouse.getLogisticsPartnerUrl() + "/parcel/" + parcelEntity.getTrackingId());
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    parcelEntity.setState(TrackingInformation.StateEnum.TRANSFERRED);
+                }
             }
+            break;
         }
-        parcelRepository.save(parcelEntity);
-
+    }
+    parcelRepository.save(parcelEntity);
+}else{
+    return null;
+}
 
         if (arrival != null) {
             return new PushNotif(tracking,arrival.getDescription());

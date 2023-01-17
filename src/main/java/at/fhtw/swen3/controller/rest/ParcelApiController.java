@@ -77,8 +77,12 @@ public class ParcelApiController implements ParcelApi {
     public ResponseEntity<Void> reportParcelHop(String trackingId, String code) throws IOException {
             log.info("should send rn");
             PushNotif notif = parcelService.reportParcel(trackingId,code);
-            kafkaTemplate.send("hopChange",notif);
-            return new ResponseEntity<>(HttpStatus.OK);
+            if(notif!=null) {
+                kafkaTemplate.send("hopChange", notif);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
 
 
     }
