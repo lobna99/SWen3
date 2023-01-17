@@ -67,7 +67,7 @@ public class ParcelApiController implements ParcelApi {
 
         newParcelInfo.setTrackingId(parcelService.submitNewParcel(parcel, trackingId));
 
-        return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.OK);
+        return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.CREATED);
     }
 
     @Override
@@ -79,9 +79,13 @@ public class ParcelApiController implements ParcelApi {
     @Override
     public ResponseEntity<Void> reportParcelHop(String trackingId, String code) throws IOException {
             log.info("should send rn");
-            PushNotif notif = parcelService.reportParcel(trackingId,code);
-            kafkaTemplate.send("hopChange",notif);
+                PushNotif notif = parcelService.reportParcel(trackingId, code);
+            if(notif!=null) {
+                kafkaTemplate.send("hopChange", notif);
             return new ResponseEntity<>(HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
 
 
     }
