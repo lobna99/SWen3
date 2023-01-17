@@ -12,12 +12,14 @@ import at.fhtw.swen3.services.dto.TrackingInformation;
 import at.fhtw.swen3.services.mapper.HopArrivalMapper;
 import at.fhtw.swen3.services.mapper.HopArrivalMapperImpl;
 import at.fhtw.swen3.services.mapper.ParcelMapperImpl;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.validation.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -61,44 +63,62 @@ public class ParcelServiceImpl implements ParcelService {
         if (id.equals("")) id = UUID.randomUUID().toString().replace("-", "").toUpperCase().substring(0, 9);
 
         ParcelEntity parcelEntity = parcelMapper.dtoToEntity(parcel);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
 
-        parcelEntity.setTrackingId(id);
-        parcelEntity.setState(TrackingInformation.StateEnum.PICKUP);
-        GeoCoordinateEntity geoCoordinateEntityR = mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getRecipient().getStreet(), parcelEntity.getRecipient().getPostalCode(), parcelEntity.getRecipient().getCity(), parcelEntity.getRecipient().getCountry()));
-        GeoCoordinateEntity geoCoordinateEntityS = mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getSender().getStreet(), parcelEntity.getSender().getPostalCode(), parcelEntity.getSender().getCity(), parcelEntity.getSender().getCountry()));
+        try {
+            validator.validate(parcelEntity);
+            validator.validate(parcelEntity.getRecipient());
+            validator.validate(parcelEntity.getSender());
+            parcelEntity.setTrackingId(id);
+            parcelEntity.setState(TrackingInformation.StateEnum.PICKUP);
+            GeoCoordinateEntity geoCoordinateEntityR = mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getRecipient().getStreet(), parcelEntity.getRecipient().getPostalCode(), parcelEntity.getRecipient().getCity(), parcelEntity.getRecipient().getCountry()));
+            GeoCoordinateEntity geoCoordinateEntityS = mapsEncodingProxy.encodeAddress(new Address(parcelEntity.getSender().getStreet(), parcelEntity.getSender().getPostalCode(), parcelEntity.getSender().getCity(), parcelEntity.getSender().getCountry()));
 
-        parcelEntity.getRecipient().setLocationCoordinates(geoCoordinateEntityR);
-        parcelEntity.getSender().setLocationCoordinates(geoCoordinateEntityS);
+            parcelEntity.getRecipient().setLocationCoordinates(geoCoordinateEntityR);
+            parcelEntity.getSender().setLocationCoordinates(geoCoordinateEntityS);
 
-        geoCoordinateRepository.save(geoCoordinateEntityR);
-        geoCoordinateRepository.save(geoCoordinateEntityS);
-        Long recp_id = recipientRepository.save(parcelEntity.getRecipient()).getId();
-        Long send_id = recipientRepository.save(parcelEntity.getSender()).getId();
-        List<TruckEntity> truck = truckRepository.getClosestHop(recp_id);
-        List<TransferwarehouseEntity> transferwarehouseEntity = transferwarehouseRepository.getClosestHop(recp_id);
-        List<TruckEntity> s_truck = truckRepository.getClosestHop(send_id);
-        List<TransferwarehouseEntity> s_transferwarehouseEntity = transferwarehouseRepository.getClosestHop(send_id);
-        HopEntity closestR = new HopEntity();
-        HopEntity closestS = new HopEntity();
-        if(truck.size()>0 && transferwarehouseEntity.size()>0) {
-            closestR = closerHop(truck.get(0),transferwarehouseEntity.get(0),recp_id);
-        }else if(s_truck.size()>0 && s_transferwarehouseEntity.size()>0) {
-            closestS = closerHop(s_truck.get(0),s_transferwarehouseEntity.get(0),send_id);
+            geoCoordinateRepository.save(geoCoordinateEntityR);
+            geoCoordinateRepository.save(geoCoordinateEntityS);
+            Long recp_id = recipientRepository.save(parcelEntity.getRecipient()).getId();
+            Long send_id = recipientRepository.save(parcelEntity.getSender()).getId();
+            List<TruckEntity> truck = truckRepository.getClosestHop(recp_id);
+            List<TransferwarehouseEntity> transferwarehouseEntity = transferwarehouseRepository.getClosestHop(recp_id);
+            List<TruckEntity> s_truck = truckRepository.getClosestHop(send_id);
+            List<TransferwarehouseEntity> s_transferwarehouseEntity = transferwarehouseRepository.getClosestHop(send_id);
+            HopEntity closestR = new HopEntity();
+            HopEntity closestS = new HopEntity();
+
+            if (truck.size() > 0 && transferwarehouseEntity.size() > 0) {
+                closestR = closerHop(truck.get(0), transferwarehouseEntity.get(0), recp_id);
+            } else if (s_truck.size() > 0 && s_transferwarehouseEntity.size() > 0) {
+                closestS = closerHop(s_truck.get(0), s_transferwarehouseEntity.get(0), send_id);
+            } else if (truck.size() > 0 || transferwarehouseEntity.size() > 0) {
+                if (transferwarehouseEntity.isEmpty()) {
+                    closestR = truck.get(0);
+                }
+                if (s_transferwarehouseEntity.isEmpty()) {
+                    closestS = s_truck.get(0);
+                }
+            }
+
+            List<HopEntity> routehops = calculateRoute(closestR, closestS);
+            parcelEntity.setFutureHops(createFutureHops(routehops));
+            parcelEntity.setVisitedHops(new ArrayList<HopArrivalEntity>());
+            hopArrivalRepository.saveAll(parcelEntity.getFutureHops());
+            parcelRepository.save(parcelEntity);
+            log.info("parcel has been submit");
+            return parcelEntity.getTrackingId();
+        } catch (ConstraintViolationException e) {
+            for (ConstraintViolation violation : e.getConstraintViolations()) {
+                log.error(violation.getMessage());
+            }
+            return null;
         }
-        if(transferwarehouseEntity.isEmpty()){
-            closestR = truck.get(0);
-        }
-        if(s_transferwarehouseEntity.isEmpty()){
-            closestS = s_truck.get(0);
-        }
-        List<HopEntity> routehops = calculateRoute(closestR, closestS);
-        parcelEntity.setFutureHops(createFutureHops(routehops));
-        parcelEntity.setVisitedHops(new ArrayList<HopArrivalEntity>());
-        hopArrivalRepository.saveAll(parcelEntity.getFutureHops());
-        parcelRepository.save(parcelEntity);
-        log.info("parcel has been submit");
-        return parcelEntity.getTrackingId();
     }
+
+
+
 
     private HopEntity closerHop(HopEntity hopA,HopEntity hopB, long id){
         //testme

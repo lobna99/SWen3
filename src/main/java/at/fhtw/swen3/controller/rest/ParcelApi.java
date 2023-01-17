@@ -24,6 +24,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.io.IOException;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -100,7 +101,7 @@ public interface ParcelApi {
     default ResponseEntity<Void> reportParcelHop(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId,
         @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$") @Parameter(name = "code", description = "The Code of the hop (Warehouse or Truck).", required = true) @PathVariable("code") String code
-    ) {
+    ) throws IOException {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

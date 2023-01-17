@@ -32,7 +32,6 @@ public class ParcelEntity { //TODO: tests for every entity
     private String trackingId;
 
     @Column
-    @Size(message = "weight must be over 0")
     @DecimalMin("0.0")
     private Float weight;
 

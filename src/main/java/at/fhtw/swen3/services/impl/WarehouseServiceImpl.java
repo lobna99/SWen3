@@ -48,7 +48,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public void importWarehouse(Warehouse warehouse) {
+    public void importWarehouse(Warehouse warehouse) throws ParseException {
 
         warehouseRepository.deleteAll();
         transferwarehouseRepository.deleteAll();
@@ -57,15 +57,9 @@ public class WarehouseServiceImpl implements WarehouseService {
         WarehouseMapperImpl warehouseMapper = new WarehouseMapperImpl();
         WarehouseEntity warehouseEntity = warehouseMapper.dtoToEntity(warehouse);
 
-        //TODO: exception handling
-        try {
         saveAllHops(warehouseEntity.getNextHops());
         geoCoordinateRepository.save(warehouseEntity.getLocationCoordinates());
         warehouseRepository.save(warehouseEntity);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
     }
 

@@ -11,9 +11,7 @@ class MapsEncodingProxyTest {
     @Test
     void encodeAddress() {
         Address address = new Address("Tigergasse 22","1080","Wien","Austria");
-
         MapsEncodingProxy mapsEncodingProxy = new MapsEncodingProxy();
-
         assertEquals(48.2089988,mapsEncodingProxy.encodeAddress(address).getLat());
         assertEquals(16.3449887,mapsEncodingProxy.encodeAddress(address).getLon());
 
