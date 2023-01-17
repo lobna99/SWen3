@@ -3,13 +3,13 @@ package at.fhtw.swen3.services.impl;
 
 import at.fhtw.swen3.gps.service.impl.MapsEncodingProxy;
 import at.fhtw.swen3.model.Address;
+import at.fhtw.swen3.model.PushNotif;
 import at.fhtw.swen3.persistence.entities.*;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.HopArrival;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
-import at.fhtw.swen3.services.mapper.HopArrivalMapper;
 import at.fhtw.swen3.services.mapper.HopArrivalMapperImpl;
 import at.fhtw.swen3.services.mapper.ParcelMapperImpl;
 
@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
 import javax.validation.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -52,8 +50,7 @@ public class ParcelServiceImpl implements ParcelService {
     private final HopArrivalRepository hopArrivalRepository;
     @Autowired
     private final TransferwarehouseRepository transferwarehouseRepository;
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+
 
     @Override
     public String submitNewParcel(Parcel parcel, String id) {
@@ -232,32 +229,42 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     @Override
-    public void reportParcel(String tracking, String code) throws IOException {
+    public PushNotif reportParcel(String tracking, String code) throws IOException {
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(tracking);
-
-        for (HopArrivalEntity hopArrival : parcelEntity.getFutureHops()){
-            if(hopArrival.getCode().equals(code)){
-                parcelEntity.getFutureHops().remove(hopArrival);
-                parcelEntity.getVisitedHops().add(hopArrival);
-                switch (hopArrival.getDescription().split(" ")[0]) {
-                    case "Warehouse" -> {
-                        parcelEntity.setState(TrackingInformation.StateEnum.INTRANSPORT);
-
-                    }
-                    case "Truck" -> parcelEntity.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
-                    case "Transferwarehouse" -> {
-                        TransferwarehouseEntity transferwarehouse = transferwarehouseRepository.findByCode(hopArrival.getCode());
-                        URL url = new URL(transferwarehouse.getLogisticsPartnerUrl() + "/parcel/" + parcelEntity.getTrackingId());
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setRequestMethod("POST");
-                        conn.setDoOutput(true);
-                        parcelEntity.setState(TrackingInformation.StateEnum.TRANSFERRED);
-                    }
+        HopArrivalEntity arrival = null;
+if(parcelEntity!=null) {
+    for (HopArrivalEntity hopArrival : parcelEntity.getFutureHops()) {
+        if (hopArrival.getCode().equals(code)) {
+            parcelEntity.getFutureHops().remove(hopArrival);
+            parcelEntity.getVisitedHops().add(hopArrival);
+            arrival = hopArrival;
+            switch (hopArrival.getDescription().split(" ")[0]) {
+                case "Warehouse" -> {
+                    parcelEntity.setState(TrackingInformation.StateEnum.INTRANSPORT);
                 }
-             break;
+                case "Truck" -> parcelEntity.setState(TrackingInformation.StateEnum.INTRUCKDELIVERY);
+                case "Transferwarehouse" -> {
+                    TransferwarehouseEntity transferwarehouse = transferwarehouseRepository.findByCode(hopArrival.getCode());
+                    URL url = new URL(transferwarehouse.getLogisticsPartnerUrl() + "/parcel/" + parcelEntity.getTrackingId());
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    parcelEntity.setState(TrackingInformation.StateEnum.TRANSFERRED);
+                }
             }
+            break;
         }
-        parcelRepository.save(parcelEntity);
+    }
+    parcelRepository.save(parcelEntity);
+}else{
+    return null;
+}
+
+        if (arrival != null) {
+            return new PushNotif(tracking,arrival.getDescription());
+        }else{
+            return new PushNotif(tracking,"");
+        }
     }
 
     @Override
