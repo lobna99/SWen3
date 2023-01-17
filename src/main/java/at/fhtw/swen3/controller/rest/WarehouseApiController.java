@@ -5,6 +5,7 @@ import at.fhtw.swen3.services.HopService;
 import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Warehouse;
+import org.locationtech.jts.io.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,11 @@ public class WarehouseApiController implements WarehouseApi {
     @Override
     public ResponseEntity<Void> importWarehouses(Warehouse warehouse) {
 
-        warehouseService.importWarehouse(warehouse);
+        try {
+            warehouseService.importWarehouse(warehouse);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

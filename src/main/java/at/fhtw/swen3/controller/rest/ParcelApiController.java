@@ -2,6 +2,7 @@ package at.fhtw.swen3.controller.rest;
 
 
 import at.fhtw.swen3.controller.rest.ParcelApi;
+import at.fhtw.swen3.model.PushNotif;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
@@ -31,10 +32,10 @@ public class ParcelApiController implements ParcelApi {
     @Autowired
     private final ParcelService parcelService;
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, PushNotif> kafkaTemplate;
 
     @Autowired
-    public ParcelApiController(NativeWebRequest request, ParcelService parcelService,KafkaTemplate<String, String> kafkaTemplate) {
+    public ParcelApiController(NativeWebRequest request, ParcelService parcelService,KafkaTemplate<String, PushNotif> kafkaTemplate) {
         this.request = request;
         this.parcelService = parcelService;
         this.kafkaTemplate = kafkaTemplate;
@@ -73,21 +74,19 @@ public class ParcelApiController implements ParcelApi {
     }
 
     @Override
-    public ResponseEntity<Void> reportParcelHop(String trackingId, String code) {
-        try {//TODO: exception handling
-            kafkaTemplate.send("hopChange", "Hello World");
+    public ResponseEntity<Void> reportParcelHop(String trackingId, String code) throws IOException {
             log.info("should send rn");
-            parcelService.reportParcel(trackingId,code);
+            PushNotif notif = parcelService.reportParcel(trackingId,code);
+            kafkaTemplate.send("hopChange",notif);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (IOException e) {
-            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
-        }
+
 
     }
 
     @Override
     public ResponseEntity<Void> reportParcelDelivery(String trackingId) {
         parcelService.reportDelivery(trackingId);
+        kafkaTemplate.send("hopChange",new PushNotif(trackingId,"Destination"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
