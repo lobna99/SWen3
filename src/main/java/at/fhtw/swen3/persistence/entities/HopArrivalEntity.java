@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.OffsetDateTime;
 
@@ -31,6 +32,6 @@ public class HopArrivalEntity {
 
     @Column
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @NotBlank
+    @NotNull
     private OffsetDateTime dateTime;
 }

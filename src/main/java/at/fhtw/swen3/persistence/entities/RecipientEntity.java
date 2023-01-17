@@ -23,16 +23,16 @@ public class RecipientEntity {
     private Long id;
 
 
-    @Column @Pattern(regexp = "^[A-Z]+[a-zA-Z',.\\s-]")@NotNull(message = "Name cannot be null")
+    @Column @Pattern(regexp = "^[A-Z][a-zA-Z-\\s]+$")@NotNull(message = "Name cannot be null")
     private String name;
 
-    @Column @Pattern(regexp = "\\A(.*?)\\s+(\\d+[a-zA-Z]{0,1}\\s{0,1}[/]{1}\\s{0,1}\\d*[a-zA-Z]{0,1}|\\d+[a-zA-Z-]{0,1}\\d*[a-zA-Z]{0,1})$")@NotNull(message = "Name cannot be null")
+    @Column @Pattern(regexp = "^[a-zA-ZäÄöÖüÜß ]+\\s[0-9]+(/[0-9]+)*$")@NotNull(message = "Name cannot be null")
     private String street;
 
     @Column @Pattern(regexp = "^A-[0-9]{4}$") @NotNull(message = "Name cannot be null")
     private String postalCode;
 
-    @Column @Pattern(regexp = "^[A-Z]+[a-zA-Z',.\\s-]")@NotNull(message = "Name cannot be null")
+    @Column @Pattern(regexp = "^[A-Z][a-zA-Z-\\s]+$")@NotNull(message = "Name cannot be null")
     private String city;
 
     @Column

@@ -58,7 +58,7 @@ public class ParcelApiController implements ParcelApi {
         newParcelInfo.setTrackingId(parcelService.submitNewParcel(parcel, ""));
 
 
-        return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.OK);
+        return new ResponseEntity<NewParcelInfo>(newParcelInfo, HttpStatus.CREATED);
     }
 
     @Override
